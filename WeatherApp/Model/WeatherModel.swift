@@ -1,22 +1,20 @@
 import Foundation
 
 struct WeatherResponse: Decodable {
-    var response: Weather
+    var list: [WeatherDetails]
 }
 
-struct Weather: Decodable {
-    var weather: [List]
-}
+//struct Weather: Decodable {
+//    var weather: [WeatherDetails]
+//}
 
-struct List: Decodable {
+struct WeatherDetails: Decodable {
     var main: Main
     var wind: Wind
     var name: String
-//    var date: Float
 }
-
 struct Wind: Decodable {
-    var speed: Int
+    var speed: Float
 }
 
 struct Main: Decodable {
