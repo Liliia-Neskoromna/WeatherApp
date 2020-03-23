@@ -12,6 +12,7 @@ class WeatherTableViewController: UITableViewController {
         let controller = Controller()
         arrayWeather = controller.getWeather()
 
+        
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {
 //        return 1
