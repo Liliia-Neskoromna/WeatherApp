@@ -27,6 +27,8 @@ class WeatherTableViewController: UITableViewController {
             fatalError("Bad Cell")
         }
         
+        
+        
         let weather = arrayWeather[indexPath.row]
         
         let city = weather.city.cityName
