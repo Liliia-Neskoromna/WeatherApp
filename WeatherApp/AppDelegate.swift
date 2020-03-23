@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  WeatherApp
-//
-//  Created by Lilia on 3/19/20.
-//  Copyright © 2020 Lilia. All rights reserved.
-//
-
 import UIKit
 import CoreData
 
@@ -15,7 +7,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         return true
     }
 

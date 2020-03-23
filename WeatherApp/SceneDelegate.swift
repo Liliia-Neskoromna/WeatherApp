@@ -1,11 +1,3 @@
-//
-//  SceneDelegate.swift
-//  WeatherApp
-//
-//  Created by Lilia on 3/19/20.
-//  Copyright © 2020 Lilia. All rights reserved.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
