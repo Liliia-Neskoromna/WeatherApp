@@ -1,15 +1,16 @@
 import Foundation
 
 
-enum HolidayError: Error {
+enum WeatherError: Error {
     case noDataAvailable
     case canNotProcessData
 }
 
-struct HolidayRequest {
+struct WeatherRequest {
     let resourceURL: URL
     let API_KEY = "35b80fc7e92ced8b98ba88190b7b274b"
     
+// #непонятношо
     init(countryCode: String) {
         let date = Date()
         let format = DateFormatter()
@@ -22,7 +23,7 @@ struct HolidayRequest {
         self.resourceURL = resourceURL
     }
     
-    func getHolidays(completion: @escaping(Result<[HolidayDetail], HolidayError>) -> Void) {
+    func getWeather(completion: @escaping(Result<[List], WeatherError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: resourceURL) {data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.noDataAvailable))
@@ -31,9 +32,9 @@ struct HolidayRequest {
             
             do {
                 let decoder = JSONDecoder()
-                let holidaysResponse = try decoder.decode(HolidayResponse.self, from: jsonData)
-                let holidayDetails = holidaysResponse.response.holidays
-                completion(.success(holidayDetails))
+                let weatherResponse = try decoder.decode(WeatherResponse.self, from: jsonData)
+                let weatherDetails = weatherResponse.response.weather
+                completion(.success(weatherDetails))
             } catch {
                 completion(.failure(.canNotProcessData))
             }

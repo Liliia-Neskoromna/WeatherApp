@@ -1,5 +1,12 @@
 import Foundation
 
+struct WeatherResponse: Decodable {
+    var response: Weather
+}
+
+struct Weather: Decodable {
+    var weather: [List]
+}
 
 struct List: Decodable {
     var main: Main
