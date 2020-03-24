@@ -10,7 +10,6 @@ class WeatherTableViewController: UITableViewController {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                self.navigationItem.title = "\(self.listOfWeather.count) Weather found"
             }
         }
     }
