@@ -10,13 +10,7 @@ struct WeatherRequest {
     let resourceURL: URL
     let API_KEY = "35b80fc7e92ced8b98ba88190b7b274b"
     
-    var cityIdsArray = [524901, 703448, 2643743]
-    // #непонятношо
-    //    init(countryCode: String) {
-    //        let date = Date()
-    //        let format = DateFormatter()
-    //        format.dateFormat = "yyyy"
-
+    var cityIdsArray = [524901, 703448, 2643743, 1850147, 3067696, 2988507, 1609350, 5815135, 6167865]
     init () {
 
         func getCityId(array: [Int]) -> String {
