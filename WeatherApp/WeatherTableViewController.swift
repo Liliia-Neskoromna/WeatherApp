@@ -56,8 +56,11 @@ class WeatherTableViewController: UITableViewController {
         let city = weather.name
         cell.cityLabel?.text = city
         
-        let temp: String = "\(weather.main.temp)" + " °C"
-        cell.tempLabel?.text = temp
+        let temp: Float = weather.main.temp
+                
+        let roundTemp = temp.rounded()
+        let t = roundTemp.shortValue + " °C"
+        cell.tempLabel?.text = t
         
         let wind: String = "\(weather.wind.speed)" + "  m/s"
         cell.windLabel?.text = wind
@@ -66,52 +69,32 @@ class WeatherTableViewController: UITableViewController {
         cell.rainLabel?.text = rain
         
         let icon = weather.weather[0].icon
-        //        cell.testImage?.text = test
-        
-        //        let image = weather.icon.icon
         
         let string = "https://openweathermap.org/img/wn/\(icon)@2x.png"
         cell.imageWeatherIcon.imageFromServerURL(urlString: string)
         
-//        let dateFormatter : DateFormatter = DateFormatter()
-//        //  dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = Date()
-
+//      MARK: - Start experements
+//        let timeZone = weather.sys.timezone
+//        print(timeZone)
+//        let dateComponents = DateComponents(timeZone: timeZone)
+        
+        
+        
+        
+        
+//      MARK: - End experements
+        
+                let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.short
-        
         cell.dateLabel?.text = dateFormatter.string(from: date)
 
-//        print(dateFormatter.string(from: date))
-        
-        
-        
-        
-//        let date = Date()
-//        let currentData = "\(date.stripTime())"
-//        cell.dateLabel?.text = currentData
-//
-//        let f = Date()
-//        let d = f.stripTime()
-//        print(d)
-        
-        
-        
-        
-//        let currentDateTime = Date()
-//        let data = Date(timeIntervalSinceReferenceDate: -123456789.0)
-//        print(data)
-        
         return cell
     }
 }
-
-extension Date {
-    func stripTime() -> Date {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: self)
-        let date = Calendar.current.date(from: components)
-        return date!
+extension Float {
+    var shortValue: String {
+        return String(format: "%g", self)
     }
 }
 
