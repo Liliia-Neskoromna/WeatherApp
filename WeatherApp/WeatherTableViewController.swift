@@ -72,11 +72,11 @@ class WeatherTableViewController: UITableViewController {
         
         let string = "https://openweathermap.org/img/wn/\(icon)@2x.png"
         cell.imageWeatherIcon.imageFromServerURL(urlString: string)
+       
         
 //      MARK: - Start experements
-//        let timeZone = weather.sys.timezone
-//        print(timeZone)
-//        let dateComponents = DateComponents(timeZone: timeZone)
+        
+    
         
         
         
@@ -84,14 +84,15 @@ class WeatherTableViewController: UITableViewController {
         
 //      MARK: - End experements
         
-                let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        cell.dateLabel?.text = dateFormatter.string(from: date)
+//        let date = Date()
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateStyle = DateFormatter.Style.short
+//        cell.dateLabel?.text = dateFormatter.string(from: date)
 
         return cell
     }
 }
+
 extension Float {
     var shortValue: String {
         return String(format: "%g", self)
