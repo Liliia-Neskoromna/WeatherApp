@@ -27,7 +27,7 @@ struct WeatherRequest {
 
         let joined = getCityId(array: cityIdsArray)
                 
-        let resourceString = "https://api.openweathermap.org/data/2.5/group?id=\(joined)&APPID=\(API_KEY)"
+        let resourceString = "https://api.openweathermap.org/data/2.5/group?id=\(joined)&units=metric&APPID=\(API_KEY)"
         
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         

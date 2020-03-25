@@ -56,21 +56,21 @@ class WeatherTableViewController: UITableViewController {
         let city = weather.name
         cell.cityLabel?.text = city
         
-        let temp: String = "\(weather.main.temp)"
+        let temp: String = "\(weather.main.temp)" + " °C"
         cell.tempLabel?.text = temp
         
-        let wind: String = "\(weather.wind.speed)"
+        let wind: String = "\(weather.wind.speed)" + "  m/s"
         cell.windLabel?.text = wind
         
-        let rain = "\(weather.main.humidity)"
+        let rain = "\(weather.main.humidity)" + " %"
         cell.rainLabel?.text = rain
         
-        let test = weather.weather[0].icon
+        let icon = weather.weather[0].icon
         //        cell.testImage?.text = test
         
         //        let image = weather.icon.icon
         
-        let string = "https://openweathermap.org/img/wn/\(test)@2x.png"
+        let string = "https://openweathermap.org/img/wn/\(icon)@2x.png"
         
         cell.imageWeatherIcon.imageFromServerURL(urlString: string)
         
