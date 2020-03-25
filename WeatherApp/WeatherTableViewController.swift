@@ -84,10 +84,10 @@ class WeatherTableViewController: UITableViewController {
         
 //      MARK: - End experements
         
-//        let date = Date()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = DateFormatter.Style.short
-//        cell.dateLabel?.text = dateFormatter.string(from: date)
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        cell.dateLabel?.text = dateFormatter.string(from: date)
 
         return cell
     }
