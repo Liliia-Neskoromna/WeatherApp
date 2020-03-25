@@ -8,6 +8,8 @@ class WeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var rainLabel: UILabel!
+    @IBOutlet weak var imageWeatherIcon: UIImageView!
+    @IBOutlet weak var testImage: UILabel!
     
     
 }

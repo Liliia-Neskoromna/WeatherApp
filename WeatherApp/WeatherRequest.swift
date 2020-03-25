@@ -10,14 +10,24 @@ struct WeatherRequest {
     let resourceURL: URL
     let API_KEY = "35b80fc7e92ced8b98ba88190b7b274b"
     
-// #непонятношо
-//    init(countryCode: String) {
-//        let date = Date()
-//        let format = DateFormatter()
-//        format.dateFormat = "yyyy"
-//        let id: Array = [524901, 703448, 2643743]
+    var cityIdsArray = [524901, 703448, 2643743]
+    // #непонятношо
+    //    init(countryCode: String) {
+    //        let date = Date()
+    //        let format = DateFormatter()
+    //        format.dateFormat = "yyyy"
+
     init () {
-        let resourceString = "https://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&APPID=\(API_KEY)"
+
+        func getCityId(array: [Int]) -> String {
+            let stringArray = array.map{ String($0) }
+            let string = "\(stringArray.joined(separator: ","))"
+            return string
+        }
+
+        let joined = getCityId(array: cityIdsArray)
+                
+        let resourceString = "https://api.openweathermap.org/data/2.5/group?id=\(joined)&APPID=\(API_KEY)"
         
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         
@@ -42,6 +52,7 @@ struct WeatherRequest {
         }
         dataTask.resume()
     }
-    
-    
 }
+
+
+

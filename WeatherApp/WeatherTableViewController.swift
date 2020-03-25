@@ -2,7 +2,7 @@ import UIKit
 
 class WeatherTableViewController: UITableViewController {
     
-//    var arrayWeather: Array<Weather> = Array()
+    //    var arrayWeather: Array<Weather> = Array()
     let kReUseIdentitfire: String = "weatherTableViewCell"
     
     var listOfWeather = [WeatherDetails]() {
@@ -27,8 +27,14 @@ class WeatherTableViewController: UITableViewController {
                 self?.listOfWeather = weather
             }
         }
-//        let controller = Controller()
-//        arrayWeather = controller.getWeather()
+        
+        
+        
+        //        self.imgView.downloadImage(from: url!)
+        
+        
+        //        let controller = Controller()
+        //        arrayWeather = controller.getWeather()
     }
     
     
@@ -43,8 +49,8 @@ class WeatherTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell else {fatalError("Bad Cell")}
-
- 
+        
+        
         let weather = listOfWeather[indexPath.row]
         
         let city = weather.name
@@ -59,8 +65,33 @@ class WeatherTableViewController: UITableViewController {
         let rain = "\(weather.main.humidity)"
         cell.rainLabel?.text = rain
         
+        let test = weather.weather[0].icon
+        //        cell.testImage?.text = test
+        
+        //        let image = weather.icon.icon
+        
+        let string = "https://openweathermap.org/img/wn/\(test)@2x.png"
+        
+        cell.imageWeatherIcon.imageFromServerURL(urlString: string)
+        
         return cell
     }
-    
-    
 }
+
+extension UIImageView {
+    public func imageFromServerURL(urlString: String) {
+        self.image = nil
+        let urlStringNew = urlString.replacingOccurrences(of: " ", with: "%20")
+        URLSession.shared.dataTask(with: NSURL(string: urlStringNew)! as URL, completionHandler: { (data, response, error) -> Void in
+            
+            if error != nil {
+                print(error as Any)
+                return
+            }
+            DispatchQueue.main.async(execute: { () -> Void in
+                let image = UIImage(data: data!)
+                self.image = image
+            })
+            
+        }).resume()
+    }}

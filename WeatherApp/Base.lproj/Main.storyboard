@@ -29,7 +29,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Temp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaX-dP-8YC">
-                                            <rect key="frame" x="79" y="55" width="257" height="48"/>
+                                            <rect key="frame" x="128" y="55" width="157" height="48"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,13 +56,26 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lc-6U-cbl">
+                                            <rect key="frame" x="184" y="170" width="85" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3Wb-qm-oh9">
+                                            <rect key="frame" x="293" y="49" width="79" height="83"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cityLabel" destination="8qe-3C-MFA" id="mp6-NR-YKb"/>
                                     <outlet property="dateLabel" destination="mSc-D0-DAF" id="zfR-ru-02A"/>
+                                    <outlet property="imageWeatherIcon" destination="3Wb-qm-oh9" id="8Kw-Uz-c9l"/>
                                     <outlet property="rainLabel" destination="0ED-aS-pQo" id="kfa-Tt-4tk"/>
                                     <outlet property="tempLabel" destination="gaX-dP-8YC" id="aKm-5b-L7t"/>
+                                    <outlet property="testImage" destination="7lc-6U-cbl" id="hZT-pY-yUw"/>
                                     <outlet property="windLabel" destination="eut-3b-aj5" id="bV1-vr-lt2"/>
                                 </connections>
                             </tableViewCell>
