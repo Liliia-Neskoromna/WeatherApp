@@ -2,9 +2,7 @@ import UIKit
 
 class WeatherTableViewController: UITableViewController {
     
-    //    var arrayWeather: Array<Weather> = Array()
     let kReUseIdentitfire: String = "weatherTableViewCell"
-    
     var listOfWeather = [WeatherDetails]() {
         
         didSet {
@@ -27,16 +25,7 @@ class WeatherTableViewController: UITableViewController {
                 self?.listOfWeather = weather
             }
         }
-        
-        
-        
-        //        self.imgView.downloadImage(from: url!)
-        
-        
-        //        let controller = Controller()
-        //        arrayWeather = controller.getWeather()
     }
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -50,55 +39,66 @@ class WeatherTableViewController: UITableViewController {
         
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell else {fatalError("Bad Cell")}
         
-        
         let weather = listOfWeather[indexPath.row]
+//      MARK: - City
         
         let city = weather.name
         cell.cityLabel?.text = city
         
+//      MARK: - Temp
+        
         let temp: Float = weather.main.temp
-                
         let roundTemp = temp.rounded()
         let t = roundTemp.shortValue + " °C"
         cell.tempLabel?.text = t
         
+//      MARK: - Wind
+        
         let wind: String = "\(weather.wind.speed)" + "  m/s"
         cell.windLabel?.text = wind
+        
+//      MARK: - Humidity
         
         let rain = "\(weather.main.humidity)" + " %"
         cell.rainLabel?.text = rain
         
-        let icon = weather.weather[0].icon
+//      MARK: - Icon
         
+        let icon = weather.weather[0].icon
         let string = "https://openweathermap.org/img/wn/\(icon)@2x.png"
         cell.imageWeatherIcon.imageFromServerURL(urlString: string)
+        
+//      MARK: - Flexible date
+        let date = Date()
+        let calendar = Calendar.current
+        let components1 = calendar.dateComponents([.year,], from: date)
+        let components2 = calendar.dateComponents([.month,], from: date)
+        let components3 = calendar.dateComponents([.day,], from: date)
+        let year = components1.year
+        let month = components2.month
+        let day = components3.day
+        cell.dateLabel?.text = "\(day ?? 1)" + "." + "\(month ?? 1)" + "." + "\(year ?? 1)"
        
-        
 //      MARK: - Start experements
-        
-    
-        
-        
-        
-        
-        
 //      MARK: - End experements
         
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        cell.dateLabel?.text = dateFormatter.string(from: date)
+//      MARK: - Constant data
+//        let date = Date()
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateStyle = DateFormatter.Style.short
+//        cell.dateLabel?.text = dateFormatter.string(from: date)
 
         return cell
     }
 }
 
+//      MARK: - Extension for Float
 extension Float {
     var shortValue: String {
         return String(format: "%g", self)
     }
 }
-
+//      MARK: - Extension for Icon
 extension UIImageView {
     public func imageFromServerURL(urlString: String) {
         self.image = nil
