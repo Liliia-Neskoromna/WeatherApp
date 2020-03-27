@@ -3,6 +3,8 @@ import UIKit
 class WeatherTableViewController: UITableViewController {
     
     let kReUseIdentitfire: String = "weatherTableViewCell"
+    let defaults = UserDefaults.standard
+    
     var listOfWeather = [WeatherDetails]() {
         
         didSet {
@@ -26,6 +28,30 @@ class WeatherTableViewController: UITableViewController {
             }
         }
     }
+    //      MARK: - Start experements
+    func textLabelShouldReturn(_ textLabel: UILabel) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    func saveWeatherData() {
+        defaults.set(<#T##value: Any?##Any?#>, forKey: <#T##String#>)
+            , forKey: "weather")
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -40,65 +66,97 @@ class WeatherTableViewController: UITableViewController {
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell else {fatalError("Bad Cell")}
         
         let weather = listOfWeather[indexPath.row]
-//      MARK: - City
+        //      MARK: - City
         
         let city = weather.name
         cell.cityLabel?.text = city
         
-//      MARK: - Temp
+        //      MARK: - Temp
         
         let temp: Float = weather.main.temp
         let roundTemp = temp.rounded()
         let t = roundTemp.shortValue + " °C"
         cell.tempLabel?.text = t
         
-//      MARK: - Wind
+        //      MARK: - Wind
         
         let wind: String = "\(weather.wind.speed)" + "  m/s"
         cell.windLabel?.text = wind
         
-//      MARK: - Humidity
+        //      MARK: - Humidity
         
         let rain = "\(weather.main.humidity)" + " %"
         cell.rainLabel?.text = rain
         
-//      MARK: - Icon
+        //      MARK: - Icon
         
         let icon = weather.weather[0].icon
         let string = "https://openweathermap.org/img/wn/\(icon)@2x.png"
         cell.imageWeatherIcon.imageFromServerURL(urlString: string)
         
-//      MARK: - Flexible date
-        let date = Date()
-        let calendar = Calendar.current
-        let components1 = calendar.dateComponents([.year,], from: date)
-        let components2 = calendar.dateComponents([.month,], from: date)
-        let components3 = calendar.dateComponents([.day,], from: date)
-        let year = components1.year
-        let month = components2.month
-        let day = components3.day
-        cell.dateLabel?.text = "\(day ?? 1)" + "." + "\(month ?? 1)" + "." + "\(year ?? 1)"
-       
-//      MARK: - Start experements
-//      MARK: - End experements
         
-//      MARK: - Constant data
-//        let date = Date()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = DateFormatter.Style.short
-//        cell.dateLabel?.text = dateFormatter.string(from: date)
-
+        //      MARK: - Date in format "MMM dd,yyyy"
+        
+        let date = Date()
+        let formate = Date.getFormattedDate(date: date, format: "MMM dd, yyyy")
+        cell.dateLabel?.text = formate
+        
+        //      MARK: - Start experements
+        //      MARK: - End experements
+        
+        //      MARK: - Flexible date
+        //        let date = Date()
+        //        let calendar = Calendar.current
+        //        let components1 = calendar.dateComponents([.year,], from: date)
+        //        let components2 = calendar.dateComponents([.month,], from: date)
+        //        let components3 = calendar.dateComponents([.day,], from: date)
+        //        let year = components1.year
+        //        let month = components2.month
+        //        let day = components3.day
+        //        cell.dateLabel?.text = "\(day.orNil)" + "." + "\(month.orNil)" + "." + "\(year.orNil)"
+        
+        //      MARK: - Constant data
+        //        let date = Date()
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.dateStyle = DateFormatter.Style.short
+        //        cell.dateLabel?.text = dateFormatter.string(from: date)
+        
         return cell
     }
 }
 
+extension Date {
+    static func getFormattedDate(date: Date, format: String) -> String {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = format
+        return dateformat.string(from: date)
+    }
+}
+
+//      MARK: - Optional (Basically, add an Optional extension that gives a String describing the thing in the optional, or simply “nil” if not set. In addition, if the thing in the optional is a String, put it in quotes)
+
+extension Optional {
+    var orNil : String {
+        if self == nil {
+            return "nil"
+        }
+        if "\(Wrapped.self)" == "String" {
+            return "\"\(self!)\""
+        }
+        return "\(self!)"
+    }
+}
+
 //      MARK: - Extension for Float
+
 extension Float {
     var shortValue: String {
         return String(format: "%g", self)
     }
 }
+
 //      MARK: - Extension for Icon
+
 extension UIImageView {
     public func imageFromServerURL(urlString: String) {
         self.image = nil

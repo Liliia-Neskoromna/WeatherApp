@@ -1,6 +1,5 @@
 import Foundation
 
-
 enum WeatherError: Error {
     case noDataAvailable
     case canNotProcessData
@@ -10,21 +9,14 @@ struct WeatherRequest {
     let resourceURL: URL
     let API_KEY = "35b80fc7e92ced8b98ba88190b7b274b"
     
-    var cityIdsArray = [524901, 703448, 2643743, 1850147, 3067696, 2988507, 1609350, 5815135, 6167865]
     init () {
 
-        func getCityId(array: [Int]) -> String {
-            let stringArray = array.map{ String($0) }
-            let string = "\(stringArray.joined(separator: ","))"
-            return string
-        }
-
-        let joined = getCityId(array: cityIdsArray)
+        //      MARK: - Інфа з CitiesId
+        let arrayIds = CitiesId().cityIdsArray
+        let joinedId = CitiesId().getCityId(array: arrayIds)
                 
-        let resourceString = "https://api.openweathermap.org/data/2.5/group?id=\(joined)&units=metric&APPID=\(API_KEY)"
-        
+        let resourceString = "https://api.openweathermap.org/data/2.5/group?id=\(joinedId)&units=metric&APPID=\(API_KEY)"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
-        
         self.resourceURL = resourceURL
     }
     
