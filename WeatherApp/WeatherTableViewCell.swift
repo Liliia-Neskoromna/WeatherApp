@@ -12,4 +12,6 @@ class WeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var testImage: UILabel!
     
     
+    
+    
 }

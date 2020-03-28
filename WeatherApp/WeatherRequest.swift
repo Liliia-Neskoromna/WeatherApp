@@ -9,7 +9,7 @@ struct WeatherRequest {
     let resourceURL: URL
     let API_KEY = "35b80fc7e92ced8b98ba88190b7b274b"
     
-    init () {
+    init (cityName: String) {
 
         //      MARK: - Інфа з CitiesId
         let arrayIds = CitiesId().cityIdsArray
