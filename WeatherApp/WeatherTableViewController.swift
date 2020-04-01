@@ -5,47 +5,34 @@ class WeatherTableViewController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     let kReUseIdentitfire: String = "weatherTableViewCell"
-    let defaults = UserDefaults.standard
+//    let defaults = UserDefaults.standard
     
     var listOfWeather = [WeatherDetails]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.navigationItem.title = "\(self.listOfWeather.count) Holidays found"
             }
         }
     }
+    
+    @IBAction func addCityButton() {
+        
+    }
+    
+    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        searchBar.delegate = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
+        searchBar.delegate = (self as UISearchBarDelegate)
         
         
-        let request = WeatherRequest()
-        request.getWeather{[weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let weather):
-                self?.listOfWeather = weather
             }
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
+//    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -105,13 +92,13 @@ class WeatherTableViewController: UITableViewController {
 extension WeatherTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchBarText = searchBar.text else {return}
-        let weatherRequest = WeatherRequest(cityName: searchBarText)
+        let weatherRequest = CityRequest(cityName: searchBarText)
         weatherRequest.getWeather { [weak self] result in
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let weather):
-                self?.listOfWeather = weather
+                self?.listOfWeather = [weather]
             }
             
         }
