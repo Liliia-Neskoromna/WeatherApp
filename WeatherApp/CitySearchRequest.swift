@@ -43,7 +43,6 @@ struct CityRequest {
                 completion(.failure(.noDataAvailable))
                 return
             }
-            
             do {
                 let decoder = JSONDecoder()
                 let weatherResponse = try decoder.decode(WeatherDetails.self, from: jsonData)
