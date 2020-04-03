@@ -55,5 +55,4 @@ struct CityRequest {
         }
         dataTask.resume()
     }
-    
 }

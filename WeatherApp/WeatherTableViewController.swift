@@ -2,8 +2,8 @@ import UIKit
 
 class WeatherTableViewController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
+    
     let kReUseIdentitfire: String = "weatherTableViewCell"
-    //    let defaults = UserDefaults.standard
     var listOfWeather = [WeatherDetails]() {
         didSet {
             DispatchQueue.main.async {
@@ -12,6 +12,19 @@ class WeatherTableViewController: UITableViewController {
             }
         }
     }
+    // MARK: - Додаємо кнопку
+    
+    @IBAction func addCity(_ sender: AnyObject) {
+        let alert = UIAlertController(title: "City", message: "Add city?", preferredStyle: .alert)
+        
+        self.saveCity(name: nameToSave)
+        self.tableView.reloadData()
+    }
+    func saveCity(name: String) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //        tableView.delegate = self

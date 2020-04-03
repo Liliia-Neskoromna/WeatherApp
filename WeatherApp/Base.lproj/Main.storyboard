@@ -86,7 +86,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="tintColor" red="1" green="0.4431150552" blue="0.1212853314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <action selector="addCityButton" destination="152-Gs-6b5" eventType="touchUpInside" id="Iiu-5j-0D3"/>
+                                                <action selector="addCity:" destination="152-Gs-6b5" eventType="touchUpInside" id="Ako-y0-yfc"/>
                                             </connections>
                                         </button>
                                     </subviews>
