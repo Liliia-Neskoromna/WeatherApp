@@ -51,7 +51,7 @@ class WeatherTableViewController: UITableViewController {
         return cell
     }
 }
-        // MARK: - Extension for searchBar
+// MARK: - Extension for searchBar
 extension WeatherTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchBarText = searchBar.text else {return}
@@ -66,7 +66,7 @@ extension WeatherTableViewController: UISearchBarDelegate {
         }
     }
 }
-        // MARK: - Date (вивела дату у форматі як сказав котик)
+// MARK: - Date (вивела дату у форматі як сказав котик)
 extension Date {
     static func getFormattedDate(date: Date, format: String) -> String {
         let dateformat = DateFormatter()
@@ -74,31 +74,31 @@ extension Date {
         return dateformat.string(from: date)
     }
 }
-        // MARK: - Extension for Float
+// MARK: - Extension for Float
 extension Float {
     var shortValue: String {
         return String(format: "%g", self)
     }
 }
-        // MARK: - Extension for Icon
+// MARK: - Extension for Icon
 extension UIImageView {
     public func imageFromServerURL(urlString: String) {
         self.image = nil
         let urlStringNew = urlString.replacingOccurrences(of: " ", with: "%20")
         URLSession.shared.dataTask(with: NSURL(string: urlStringNew)!
             as URL, completionHandler: { (data, _, error) -> Void in
-            if error != nil {
-                print(error as Any)
-                return
-            }
-            DispatchQueue.main.async(execute: { () -> Void in
-                let image = UIImage(data: data!)
-                self.image = image
-            })
+                if error != nil {
+                    print(error as Any)
+                    return
+                }
+                DispatchQueue.main.async(execute: { () -> Void in
+                    let image = UIImage(data: data!)
+                    self.image = image
+                })
         }).resume()
     }}
 
-        // MARK: - Flexible date (V2)
+// MARK: - Flexible date (V2)
 
 //        let date = Date()
 //        let calendar = Calendar.current
@@ -110,14 +110,14 @@ extension UIImageView {
 //        let day = components3.day
 //        cell.dateLabel?.text = "\(day.orNil)" + "." + "\(month.orNil)" + "." + "\(year.orNil)"
 
-        // MARK: - Constant data (V3)
+// MARK: - Constant data (V3)
 
 //        let date = Date()
 //        let dateFormatter = DateFormatter()
 //        dateFormatter.dateStyle = DateFormatter.Style.short
 //        cell.dateLabel?.text = dateFormatter.string(from: date)
 
-        // MARK: - (зробила зміну шоб не було попередження тут: cell.dateLabel?.text = "\(day.orNil)")
+// MARK: - (зробила зміну шоб не було попередження тут: cell.dateLabel?.text = "\(day.orNil)")
 
 //extension Optional {
 //    var orNil : String {

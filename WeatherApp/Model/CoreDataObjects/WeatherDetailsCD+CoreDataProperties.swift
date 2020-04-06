@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 
-
 extension WeatherDetailsCD {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<WeatherDetailsCD> {

@@ -127,11 +127,11 @@
 				2253D5E9243B3E2400153050 /* WeatherCD+CoreDataProperties.swift */,
 				2253D5E8243B3E2400153050 /* WeatherCD+CoreDataClass.swift */,
 				2253D5E6243B3E2400153050 /* WeatherDetailsCD+CoreDataClass.swift */,
+				2253D5E7243B3E2400153050 /* WeatherDetailsCD+CoreDataProperties.swift */,
 				2253D5E2243B3E2400153050 /* MainParamsCD+CoreDataClass.swift */,
-				2253D5E5243B3E2400153050 /* WindDetailsCD+CoreDataProperties.swift */,
 				2253D5E3243B3E2400153050 /* MainParamsCD+CoreDataProperties.swift */,
 				2253D5E4243B3E2400153050 /* WindDetailsCD+CoreDataClass.swift */,
-				2253D5E7243B3E2400153050 /* WeatherDetailsCD+CoreDataProperties.swift */,
+				2253D5E5243B3E2400153050 /* WindDetailsCD+CoreDataProperties.swift */,
 			);
 			path = CoreDataObjects;
 			sourceTree = "<group>";
