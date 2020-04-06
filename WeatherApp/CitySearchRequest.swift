@@ -7,19 +7,19 @@ enum CityError: Error {
 
 struct CityRequest {
     let urlresource: URL
-    
+
     //    let headers = [
     //        "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
     //        "x-rapidapi-key": "cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86"
     //    ]
-    
+
     init (cityName: String) {
         let resourceString = "https://community-open-weather-map.p.rapidapi.com/weather?q=\(cityName)&units=metric"
-        guard let urlresource = URL(string: resourceString) else {fatalError()}
-        
-        
-//        self.resourceCityURL.setTemporaryResourceValue("cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86", forKey: URLResourceKey(rawValue: "x-rapidapi-key"))
-        
+        guard let urlresource = URL(string: resourceString) else { fatalError() }
+
+//        self.resourceCityURL.setTemporaryResourceValue
+//        ("cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86",
+//        forKey: URLResourceKey(rawValue: "x-rapidapi-key"))
 //        resourceCityURL.query =
 //            [
 //            URLQueryItem(name: "x-rapidapi-host", value: "community-open-weather-map.p.rapidapi.com"),
@@ -27,18 +27,16 @@ struct CityRequest {
 //        ]
         self.urlresource = urlresource
     }
-    
+
     func getWeather(completion: @escaping(Result<WeatherDetails, CityError>) -> Void) {
-        
+
         var resourceCityURL = URLRequest(url: urlresource, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
 //        resourceCityURL.httpMethod = "GET"
-        resourceCityURL.addValue("community-open-weather-map.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
-        resourceCityURL.addValue("cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86", forHTTPHeaderField: "x-rapidapi-key")
-        
-//       resourceCityURL.setValue("community-open-weather-map.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
-//       resourceCityURL.setValue("cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86", forHTTPHeaderField: "x-rapidapi-key")
-        
-        let dataTask = URLSession.shared.dataTask(with: resourceCityURL) {data, _, error in
+        resourceCityURL.addValue("community-open-weather-map.p.rapidapi.com",
+                                 forHTTPHeaderField: "x-rapidapi-host")
+        resourceCityURL.addValue("cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86",
+                                 forHTTPHeaderField: "x-rapidapi-key")
+        let dataTask = URLSession.shared.dataTask(with: resourceCityURL) {data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.noDataAvailable))
                 return
@@ -55,5 +53,4 @@ struct CityRequest {
         }
         dataTask.resume()
     }
-    
 }

@@ -2,7 +2,7 @@ import UIKit
 
 class WeatherTableViewController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
-    let kReUseIdentitfire: String = "weatherTableViewCell"
+    let kReUseId: String = "weatherTableViewCell"
     //    let defaults = UserDefaults.standard
     var listOfWeather = [WeatherDetails]() {
         didSet {
@@ -25,36 +25,33 @@ class WeatherTableViewController: UITableViewController {
         return listOfWeather.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell else {fatalError("Bad Cell")}
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseId,
+                                                            for: indexPath)
+            as? WeatherTableViewCell else {fatalError("Bad Cell")}
         let weather = listOfWeather[indexPath.row]
-        //      MARK: - City
         let city = weather.name
         cell.cityLabel?.text = city
-        //      MARK: - Temp
         let temp: Float = weather.main.temp
         let roundTemp = temp.rounded()
-        let t = roundTemp.shortValue + " °C"
-        cell.tempLabel?.text = t
-        //      MARK: - Wind
+        let temper = roundTemp.shortValue + " °C"
+        cell.tempLabel?.text = temper
         let wind: String = "\(weather.wind.speed)" + "  m/s"
         cell.windLabel?.text = wind
-        //      MARK: - Humidity
         let rain = "\(weather.main.humidity)" + " %"
         cell.rainLabel?.text = rain
-        //      MARK: - Icon
         let icon = weather.weather[0].icon
         let string = "https://openweathermap.org/img/wn/\(icon)@2x.png"
         cell.imageWeatherIcon.imageFromServerURL(urlString: string)
-        //      MARK: - Date in format "MMM dd,yyyy" (V1)
+        // MARK: - Date in format "MMM dd,yyyy" (V1)
         let date = Date()
         let formate = Date.getFormattedDate(date: date, format: "MMM dd, yyyy")
         cell.dateLabel?.text = formate
-        //      MARK: - Start experements
-        //      MARK: - End experements
+        // MARK: - Start experements
+        // MARK: - End experements
         return cell
     }
 }
-//      MARK: - Extension for searchBar
+        // MARK: - Extension for searchBar
 extension WeatherTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchBarText = searchBar.text else {return}
@@ -69,7 +66,7 @@ extension WeatherTableViewController: UISearchBarDelegate {
         }
     }
 }
-//      MARK: - Date (вивела дату у форматі як сказав котик)
+        // MARK: - Date (вивела дату у форматі як сказав котик)
 extension Date {
     static func getFormattedDate(date: Date, format: String) -> String {
         let dateformat = DateFormatter()
@@ -77,18 +74,19 @@ extension Date {
         return dateformat.string(from: date)
     }
 }
-//      MARK: - Extension for Float
+        // MARK: - Extension for Float
 extension Float {
     var shortValue: String {
         return String(format: "%g", self)
     }
 }
-//      MARK: - Extension for Icon
+        // MARK: - Extension for Icon
 extension UIImageView {
     public func imageFromServerURL(urlString: String) {
         self.image = nil
         let urlStringNew = urlString.replacingOccurrences(of: " ", with: "%20")
-        URLSession.shared.dataTask(with: NSURL(string: urlStringNew)! as URL, completionHandler: { (data, response, error) -> Void in
+        URLSession.shared.dataTask(with: NSURL(string: urlStringNew)!
+            as URL, completionHandler: { (data, _, error) -> Void in
             if error != nil {
                 print(error as Any)
                 return
@@ -100,7 +98,7 @@ extension UIImageView {
         }).resume()
     }}
 
-//      MARK: - Flexible date (V2)
+        // MARK: - Flexible date (V2)
 
 //        let date = Date()
 //        let calendar = Calendar.current
@@ -112,15 +110,14 @@ extension UIImageView {
 //        let day = components3.day
 //        cell.dateLabel?.text = "\(day.orNil)" + "." + "\(month.orNil)" + "." + "\(year.orNil)"
 
-//      MARK: - Constant data (V3)
+        // MARK: - Constant data (V3)
 
 //        let date = Date()
 //        let dateFormatter = DateFormatter()
 //        dateFormatter.dateStyle = DateFormatter.Style.short
 //        cell.dateLabel?.text = dateFormatter.string(from: date)
 
-//      MARK: - (зробила зміну шоб не було попередження тут: cell.dateLabel?.text = "\(day.orNil)")
-//Optional (Basically, add an Optional extension that gives a String describing the thing in the optional, or simply “nil” if not set. In addition, if the thing in the optional is a String, put it in quotes)
+        // MARK: - (зробила зміну шоб не було попередження тут: cell.dateLabel?.text = "\(day.orNil)")
 
 //extension Optional {
 //    var orNil : String {
