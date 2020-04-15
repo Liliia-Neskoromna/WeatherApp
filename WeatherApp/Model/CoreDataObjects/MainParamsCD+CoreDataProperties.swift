@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 
-
 extension MainParamsCD {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<MainParamsCD> {
