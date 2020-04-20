@@ -33,11 +33,6 @@ class WeatherTableViewController: UITableViewController {
         self.view.endEditing(true)
         return false
     }
-    func saveWeatherData() {
-        defaults.set(<#T##value: Any?##Any?#>, forKey: <#T##String#>)
-            , forKey: "weather")
-        
-    }
     
     
     
