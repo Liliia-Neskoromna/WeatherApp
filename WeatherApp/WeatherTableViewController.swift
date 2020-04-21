@@ -10,7 +10,7 @@ class WeatherTableViewController: UITableViewController {
     var listOfWeather = [WeatherDetails]() {
         didSet {
             DispatchQueue.main.async {
-            self.tableView.reloadData()
+                self.tableView.reloadData()
             }
         }
     }
@@ -21,44 +21,43 @@ class WeatherTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-//        printCities()
-//        let request = CityRequest(cityName: searchBar.text!)
-//        request.getWeather{[weak self] result in
-//            switch result {
-//            case .failure(let error):
-//                print(error)
-//            case .success(let weather):
-//                self?.listOfWeather = [weather]
-//                self?.saveCity(weatherDetails: weather)
-            }
-        }
+        //        printCities()
+        //        let request = CityRequest(cityName: searchBar.text!)
+        //        request.getWeather{[weak self] result in
+        //            switch result {
+        //            case .failure(let error):
+        //                print(error)
+        //            case .success(let weather):
+        //                self?.listOfWeather = [weather]
+        //                self?.saveCity(weatherDetails: weather)
     }
     
-//    func saveCity(weatherDetails: WeatherDetails) {
-//        let city = City(context: self.persistence.context)
-//        city.name = weatherDetails.name
-//        city.cityId = weatherDetails.id
-//        city.latitude = weatherDetails.coord.lat
-//        city.longtitute = weatherDetails.coord.lon
-//
-//        DispatchQueue.main.async {
-//            self.persistence.context.insert(city)
-//            self.persistence.save()
-//        }
-//    }
-//
-//    func printCities()  {
-//        do{
-//            let cities = try readCity()
-//            print(cities)
-//        }catch{
-//            print("ПУСТО")
-//        }
-//    }
-//
-//    func readCity()throws ->  [City] {
-//        return try self.persistence.context.fetch(City.fetchRequest() as NSFetchRequest<City>)
-//    }
+    
+    //    func saveCity(weatherDetails: WeatherDetails) {
+    //        let city = City(context: self.persistence.context)
+    //        city.name = weatherDetails.name
+    //        city.cityId = weatherDetails.id
+    //        city.latitude = weatherDetails.coord.lat
+    //        city.longtitute = weatherDetails.coord.lon
+    //
+    //        DispatchQueue.main.async {
+    //            self.persistence.context.insert(city)
+    //            self.persistence.save()
+    //        }
+    //    }
+    //
+    //    func printCities()  {
+    //        do{
+    //            let cities = try readCity()
+    //            print(cities)
+    //        }catch{
+    //            print("ПУСТО")
+    //        }
+    //    }
+    //
+    //    func readCity()throws ->  [City] {
+    //        return try self.persistence.context.fetch(City.fetchRequest() as NSFetchRequest<City>)
+    //    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
