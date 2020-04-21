@@ -1,16 +1,14 @@
 import Foundation
 
 struct WeatherResponse: Codable {
-    var list: [WeatherDetails]
+    var list: WeatherDetails
 }
-
 struct WeatherDetails: Codable {
     var main: Main
     var wind: Wind
     var id: Int64
     var name: String
     var weather: [Weather]
-    var sys: Sys
     var coord: Coordinates
 }
 struct Coordinates: Codable {
@@ -31,6 +29,3 @@ struct Weather: Codable {
     var description: String
 }
 
-struct Sys: Codable {
-    var timezone: Float
-}
