@@ -21,44 +21,44 @@ class WeatherTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        printCities()
-        let request = WeatherRequest()
-        request.getWeather{[weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let weather):
-                self?.listOfWeather = weather
-                self?.saveCity(weatherDetails: weather[0])
+//        printCities()
+//        let request = CityRequest(cityName: searchBar.text!)
+//        request.getWeather{[weak self] result in
+//            switch result {
+//            case .failure(let error):
+//                print(error)
+//            case .success(let weather):
+//                self?.listOfWeather = [weather]
+//                self?.saveCity(weatherDetails: weather)
             }
         }
     }
     
-    func saveCity(weatherDetails: WeatherDetails) {
-        let city = City(context: self.persistence.context)
-        city.name = weatherDetails.name
-        city.cityId = weatherDetails.id
-        city.latitude = weatherDetails.coord.lat
-        city.longtitute = weatherDetails.coord.lon
-        
-        DispatchQueue.main.async {
-            self.persistence.context.insert(city)
-            self.persistence.save()
-        }
-    }
-    
-    func printCities()  {
-        do{
-            let cities = try readCity()
-            print(cities)
-        }catch{
-            print("ПУСТО")
-        }
-    }
-    
-    func readCity()throws ->  [City] {
-        return try self.persistence.context.fetch(City.fetchRequest() as NSFetchRequest<City>)
-    }
+//    func saveCity(weatherDetails: WeatherDetails) {
+//        let city = City(context: self.persistence.context)
+//        city.name = weatherDetails.name
+//        city.cityId = weatherDetails.id
+//        city.latitude = weatherDetails.coord.lat
+//        city.longtitute = weatherDetails.coord.lon
+//
+//        DispatchQueue.main.async {
+//            self.persistence.context.insert(city)
+//            self.persistence.save()
+//        }
+//    }
+//
+//    func printCities()  {
+//        do{
+//            let cities = try readCity()
+//            print(cities)
+//        }catch{
+//            print("ПУСТО")
+//        }
+//    }
+//
+//    func readCity()throws ->  [City] {
+//        return try self.persistence.context.fetch(City.fetchRequest() as NSFetchRequest<City>)
+//    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -71,53 +71,37 @@ class WeatherTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell else {fatalError("Bad Cell")}
-        
         let weather = listOfWeather[indexPath.row]
-        //      MARK: - City
-        
+        // City
         let city = weather.name
         cell.cityLabel?.text = city
-        
-        //      MARK: - Temp
-        
+        // Temp
         let temp: Float = weather.main.temp
         let roundTemp = temp.rounded()
         let t = roundTemp.shortValue + " °C"
         cell.tempLabel?.text = t
-        
-        //      MARK: - Wind
-        
+        // Wind
         let wind: String = "\(weather.wind.speed)" + "  m/s"
         cell.windLabel?.text = wind
-        
-        //      MARK: - Humidity
-        
+        // Humidity
         let rain = "\(weather.main.humidity)" + " %"
         cell.rainLabel?.text = rain
-        
-        //      MARK: - Icon
-        
+        // Icon
         let icon = weather.weather[0].icon
         let string = "https://openweathermap.org/img/wn/\(icon)@2x.png"
         cell.imageWeatherIcon.imageFromServerURL(urlString: string)
-        
-        
-        //      MARK: - Date in format "MMM dd,yyyy"
-        
+        // Date in format "MMM dd,yyyy"
         let date = Date()
         let formate = Date.getFormattedDate(date: date, format: "MMM dd, yyyy")
         cell.dateLabel?.text = formate
-        
         return cell
     }
 }
 // MARK: - Extension for searchBar
-
 extension WeatherTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchBarText = searchBar.text else {return}
-        print(searchBarText)
-        let weatherRequest = WeatherRequest(cityName: searchBar.text)
+        let weatherRequest = CityRequest(cityName: searchBarText)
         weatherRequest.getWeather { [weak self] result in
             switch result {
             case .failure(let error):
@@ -137,8 +121,7 @@ extension Date {
     }
 }
 
-//      MARK: - Optional (Basically, add an Optional extension that gives a String describing the thing in the optional, or simply “nil” if not set. In addition, if the thing in the optional is a String, put it in quotes)
-
+//     Optional (Basically, add an Optional extension that gives a String describing the thing in the optional, or simply “nil” if not set. In addition, if the thing in the optional is a String, put it in quotes)
 extension Optional {
     var orNil : String {
         if self == nil {
@@ -151,16 +134,14 @@ extension Optional {
     }
 }
 
-//      MARK: - Extension for Float
-
+//    Extension for Float
 extension Float {
     var shortValue: String {
         return String(format: "%g", self)
     }
 }
 
-//      MARK: - Extension for Icon
-
+//    Extension for Icon
 extension UIImageView {
     public func imageFromServerURL(urlString: String) {
         self.image = nil
