@@ -1,31 +1,36 @@
 import Foundation
 
-struct WeatherResponse: Decodable {
+struct WeatherResponse: Codable {
     var list: [WeatherDetails]
 }
 
-struct WeatherDetails: Decodable {
+struct WeatherDetails: Codable {
     var main: Main
     var wind: Wind
+    var id: Int64
     var name: String
     var weather: [Weather]
     var sys: Sys
+    var coord: Coordinates
 }
-
-struct Wind: Decodable {
+struct Coordinates: Codable {
+    var lon: Float
+    var lat: Float
+}
+struct Wind: Codable {
     var speed: Float
 }
 
-struct Main: Decodable {
+struct Main: Codable {
     var temp: Float
     var humidity: Int
 }
 
-struct Weather: Decodable {
+struct Weather: Codable {
     var icon: String
     var description: String
 }
 
-struct Sys: Decodable {
+struct Sys: Codable {
     var timezone: Float
 }

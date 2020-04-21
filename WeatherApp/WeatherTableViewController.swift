@@ -1,21 +1,22 @@
 import UIKit
+import CoreData
 
 class WeatherTableViewController: UITableViewController {
     
     let kReUseIdentitfire: String = "weatherTableViewCell"
-    let defaults = UserDefaults.standard
+    let persistence = PersistanceService.shared
     
     var listOfWeather = [WeatherDetails]() {
-        
         didSet {
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+            self.tableView.reloadData()
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        printCities()
         tableView.delegate = self
         tableView.dataSource = self
         let request = WeatherRequest()
@@ -25,9 +26,37 @@ class WeatherTableViewController: UITableViewController {
                 print(error)
             case .success(let weather):
                 self?.listOfWeather = weather
+                self?.saveCity(weatherDetails: weather[0])
             }
         }
     }
+    
+    func saveCity(weatherDetails: WeatherDetails) {
+        let city = City(context: self.persistence.context)
+        city.name = weatherDetails.name
+        city.cityId = weatherDetails.id
+        city.latitude = weatherDetails.coord.lat
+        city.longtitute = weatherDetails.coord.lon
+        
+        DispatchQueue.main.async {
+            self.persistence.context.insert(city)
+            self.persistence.save()
+        }
+    }
+    
+    func printCities()  {
+        do{
+            let cities = try readCity()
+            print(cities)
+        }catch{
+            print("ПУСТО")
+        }
+    }
+    
+    func readCity()throws ->  [City] {
+        return try self.persistence.context.fetch(City.fetchRequest() as NSFetchRequest<City>)
+    }
+    
     //      MARK: - Start experements
     func textLabelShouldReturn(_ textLabel: UILabel) -> Bool {
         self.view.endEditing(true)
