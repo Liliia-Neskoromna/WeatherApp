@@ -17,22 +17,21 @@ struct CityRequest {
         let resourceString = "https://community-open-weather-map.p.rapidapi.com/weather?q=\(cityName)&units=metric"
         guard let urlresource = URL(string: resourceString) else { fatalError() }
 
-        self.resourceCityURL.setTemporaryResourceValue
-        ("cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86",
-        forKey: URLResourceKey(rawValue: "x-rapidapi-key"))
-        resourceCityURL.query =
-            [
-            URLQueryItem(name: "x-rapidapi-host", value: "community-open-weather-map.p.rapidapi.com"),
-            URLQueryItem(name: "x-rapidapi-key", value: "cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86"),
-        ]
+//        self.resourceCityURL.setTemporaryResourceValue
+//        ("cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86",
+//        forKey: URLResourceKey(rawValue: "x-rapidapi-key"))
+//        resourceCityURL.query =
+//            [
+//            URLQueryItem(name: "x-rapidapi-host", value: "community-open-weather-map.p.rapidapi.com"),
+//            URLQueryItem(name: "x-rapidapi-key", value: "cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86"),
+//        ]
         self.urlresource = urlresource
     }
 
     func getWeather(completion: @escaping(Result<WeatherDetails, CityError>) -> Void) {
 
-        var resourceCityURL = URLRequest(url: urlresource,
-                                         cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
-        resourceCityURL.httpMethod = "GET"
+        var resourceCityURL = URLRequest(url: urlresource, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+//        resourceCityURL.httpMethod = "GET"
         resourceCityURL.addValue("community-open-weather-map.p.rapidapi.com",
                                  forHTTPHeaderField: "x-rapidapi-host")
         resourceCityURL.addValue("cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86",
@@ -55,4 +54,3 @@ struct CityRequest {
         dataTask.resume()
     }
 }
-

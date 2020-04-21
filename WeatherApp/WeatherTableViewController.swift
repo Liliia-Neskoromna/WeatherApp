@@ -2,6 +2,7 @@ import UIKit
 import CoreData
 
 class WeatherTableViewController: UITableViewController {
+    @IBOutlet weak var searchBar: UISearchBar!
     
     let kReUseIdentitfire: String = "weatherTableViewCell"
     let persistence = PersistanceService.shared
@@ -16,9 +17,11 @@ class WeatherTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        printCities()
+        searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        
+        printCities()
         let request = WeatherRequest()
         request.getWeather{[weak self] result in
             switch result {
@@ -56,26 +59,6 @@ class WeatherTableViewController: UITableViewController {
     func readCity()throws ->  [City] {
         return try self.persistence.context.fetch(City.fetchRequest() as NSFetchRequest<City>)
     }
-    
-    //      MARK: - Start experements
-    func textLabelShouldReturn(_ textLabel: UILabel) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -125,27 +108,24 @@ class WeatherTableViewController: UITableViewController {
         let formate = Date.getFormattedDate(date: date, format: "MMM dd, yyyy")
         cell.dateLabel?.text = formate
         
-        //      MARK: - Start experements
-        //      MARK: - End experements
-        
-        //      MARK: - Flexible date
-        //        let date = Date()
-        //        let calendar = Calendar.current
-        //        let components1 = calendar.dateComponents([.year,], from: date)
-        //        let components2 = calendar.dateComponents([.month,], from: date)
-        //        let components3 = calendar.dateComponents([.day,], from: date)
-        //        let year = components1.year
-        //        let month = components2.month
-        //        let day = components3.day
-        //        cell.dateLabel?.text = "\(day.orNil)" + "." + "\(month.orNil)" + "." + "\(year.orNil)"
-        
-        //      MARK: - Constant data
-        //        let date = Date()
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateStyle = DateFormatter.Style.short
-        //        cell.dateLabel?.text = dateFormatter.string(from: date)
-        
         return cell
+    }
+}
+// MARK: - Extension for searchBar
+
+extension WeatherTableViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchBarText = searchBar.text else {return}
+        print(searchBarText)
+        let weatherRequest = WeatherRequest(cityName: searchBar.text)
+        weatherRequest.getWeather { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let weather):
+                self?.listOfWeather = [weather]
+            }
+        }
     }
 }
 

@@ -14,9 +14,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="separatorColor" red="0.92926246759999998" green="0.46792270619999998" blue="0.062776419649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="RMx-SM-97l">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="weatherTableViewCell" rowHeight="224" id="ujn-IK-e5j" customClass="WeatherTableViewCell" customModule="WeatherApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="224"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="224"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" tableViewCell="ujn-IK-e5j" id="IQu-Pd-ik4" customClass="WeatherTableViewCell" customModule="WeatherApp" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
@@ -96,6 +101,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Weather in cities" leftItemsSupplementBackButton="YES" id="gPN-dv-WUu"/>
+                    <connections>
+                        <outlet property="searchBar" destination="RMx-SM-97l" id="jFH-uZ-lco"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBu-Gd-jpA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
