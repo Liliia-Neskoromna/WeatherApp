@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22315567242CD9E10069C54C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22315566242CD9E10069C54C /* Keys.swift */; };
 		2231556B242CE0C80069C54C /* CitiesId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231556A242CE0C80069C54C /* CitiesId.swift */; };
 		223697DF2423A01B00DD2209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223697DE2423A01B00DD2209 /* AppDelegate.swift */; };
 		223697E12423A01B00DD2209 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223697E02423A01B00DD2209 /* SceneDelegate.swift */; };
@@ -33,7 +32,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		22315566242CD9E10069C54C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		2231556A242CE0C80069C54C /* CitiesId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesId.swift; sourceTree = "<group>"; };
 		223697DB2423A01B00DD2209 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		223697DE2423A01B00DD2209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 				2253D5F2243B3E3300153050 /* CoreDataObjects */,
 				2265D9F9242923E700FF1346 /* WeatherModel.swift */,
 				2231556A242CE0C80069C54C /* CitiesId.swift */,
-				22315566242CD9E10069C54C /* Keys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,7 +249,6 @@
 				2253D5ED243B3E2400153050 /* WindDetailsCD+CoreDataProperties.swift in Sources */,
 				2231556B242CE0C80069C54C /* CitiesId.swift in Sources */,
 				22E7E9312427BC0F0099E627 /* WeatherTableViewController.swift in Sources */,
-				22315567242CD9E10069C54C /* Keys.swift in Sources */,
 				2253D5EE243B3E2400153050 /* WeatherDetailsCD+CoreDataClass.swift in Sources */,
 				2253D5EB243B3E2400153050 /* MainParamsCD+CoreDataProperties.swift in Sources */,
 				2253D5F1243B3E2400153050 /* WeatherCD+CoreDataProperties.swift in Sources */,
