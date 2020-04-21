@@ -15,6 +15,25 @@ class WeatherTableViewController: UITableViewController {
         }
     }
     
+    
+    @IBAction func addCity(_ sender: Any) {
+    
+    //        let record = City(entity:
+//            NSEntityDescription.entity(forEntityName: "City", in: persistence.context)!,
+//                          insertInto: persistence.context)
+        
+        
+        let record = NSEntityDescription.insertNewObject(forEntityName: "City", into: persistence.context) as NSManagedObject
+        let name = searchBar.text
+        record.setValue(name, forKey: "name")
+        do {
+            try persistence.context.save()
+        } catch {
+            print("error")
+        }
+        print(record)
+        print("Object Saved")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -22,17 +41,17 @@ class WeatherTableViewController: UITableViewController {
         tableView.dataSource = self
         
         //        printCities()
-        //        let request = CityRequest(cityName: searchBar.text!)
-        //        request.getWeather{[weak self] result in
-        //            switch result {
-        //            case .failure(let error):
-        //                print(error)
-        //            case .success(let weather):
-        //                self?.listOfWeather = [weather]
-        //                self?.saveCity(weatherDetails: weather)
+        let request = CityRequest(cityName: searchBar.text!)
+        request.getWeather{[weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let weather):
+                self?.listOfWeather = [weather]
+                //                self?.saveCity(weatherDetails: weather)
+            }
+        }
     }
-    
-    
     //    func saveCity(weatherDetails: WeatherDetails) {
     //        let city = City(context: self.persistence.context)
     //        city.name = weatherDetails.name
