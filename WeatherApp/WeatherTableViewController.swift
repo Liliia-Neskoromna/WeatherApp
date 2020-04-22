@@ -7,10 +7,10 @@ class WeatherTableViewController: UITableViewController {
     let kReUseIdentitfire: String = "weatherTableViewCell"
     let persistence = PersistanceService.shared
     let context = PersistanceService.shared.context
-    var item : [Any] = []
+    var item : [City] = []
     var dic = NSMutableDictionary()
-
-   // let entity = NSEntityDescription.entity(forEntityName: "City", in: )
+    
+    // let entity = NSEntityDescription.entity(forEntityName: "City", in: )
     
     var listOfWeather = [WeatherDetails]() {
         didSet {
@@ -24,9 +24,7 @@ class WeatherTableViewController: UITableViewController {
         //            NSEntityDescription.entity(forEntityName: "City", in: persistence.context)!,
         //                          insertInto: persistence.context)
         let entity = NSEntityDescription.insertNewObject(forEntityName: "City", into: context)
-        
-    
-        let name = searchBar.text
+        let name = listOfWeather[0].name
         entity.setValue(name, forKey: "name")
         do {
             try persistence.context.save()
@@ -36,6 +34,8 @@ class WeatherTableViewController: UITableViewController {
         print(entity)
         print("Object Saved")
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +47,12 @@ class WeatherTableViewController: UITableViewController {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         fetchRequest.returnsObjectsAsFaults = false
         citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
+        //print("citiesWeather = \(citiesWeather)")
+        
         for cityWeather in citiesWeather {
             item.append(cityWeather)
         }
+        
         func numberOfSections(in tableView: UITableView) -> Int {
             return 1
         }
@@ -58,7 +61,7 @@ class WeatherTableViewController: UITableViewController {
         }
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as! WeatherTableViewCell
-            let dic = item[indexPath.row] as! NSManagedObject
+            let dic = item[indexPath.row] as NSManagedObject
             cell.cityLabel.text = dic.value(forKey: "name") as? String
             return cell
         }
@@ -153,7 +156,6 @@ extension WeatherTableViewController: UISearchBarDelegate {
         }
     }
 }
-
 extension Date {
     static func getFormattedDate(date: Date, format: String) -> String {
         let dateformat = DateFormatter()
