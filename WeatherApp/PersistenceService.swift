@@ -2,11 +2,10 @@ import Foundation
 import CoreData
 
 class PersistanceService {
-    
     private init() {}
     static let shared = PersistanceService()
-    
-    var context: NSManagedObjectContext { return persistentContainer.viewContext }
+    lazy var context: NSManagedObjectContext = persistentContainer.viewContext
+//    var context: NSManagedObjectContext { return persistentContainer.viewContext }
     
     lazy var persistentContainer: NSPersistentContainer = {
         /*

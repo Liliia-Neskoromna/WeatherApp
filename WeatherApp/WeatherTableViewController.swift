@@ -6,6 +6,11 @@ class WeatherTableViewController: UITableViewController {
     
     let kReUseIdentitfire: String = "weatherTableViewCell"
     let persistence = PersistanceService.shared
+    let context = PersistanceService.shared.context
+    var item : [Any] = []
+    var dic = NSMutableDictionary()
+
+   // let entity = NSEntityDescription.entity(forEntityName: "City", in: )
     
     var listOfWeather = [WeatherDetails]() {
         didSet {
@@ -14,31 +19,49 @@ class WeatherTableViewController: UITableViewController {
             }
         }
     }
-    
-    
-    @IBAction func addCity(_ sender: Any) {
-    
-    //        let record = City(entity:
-//            NSEntityDescription.entity(forEntityName: "City", in: persistence.context)!,
-//                          insertInto: persistence.context)
+    @IBAction func addCity(_ sender: UIButton) {
+        //        let record = City(entity:
+        //            NSEntityDescription.entity(forEntityName: "City", in: persistence.context)!,
+        //                          insertInto: persistence.context)
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "City", into: context)
         
-        
-        let record = NSEntityDescription.insertNewObject(forEntityName: "City", into: persistence.context) as NSManagedObject
+    
         let name = searchBar.text
-        record.setValue(name, forKey: "name")
+        entity.setValue(name, forKey: "name")
         do {
             try persistence.context.save()
         } catch {
             print("error")
         }
-        print(record)
+        print(entity)
         print("Object Saved")
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        
+        var citiesWeather = [City]()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
+        fetchRequest.returnsObjectsAsFaults = false
+        citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
+        for cityWeather in citiesWeather {
+            item.append(cityWeather)
+        }
+        func numberOfSections(in tableView: UITableView) -> Int {
+            return 1
+        }
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return item.count
+        }
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as! WeatherTableViewCell
+            let dic = item[indexPath.row] as! NSManagedObject
+            cell.cityLabel.text = dic.value(forKey: "name") as? String
+            return cell
+        }
         
         //        printCities()
         let request = CityRequest(cityName: searchBar.text!)
