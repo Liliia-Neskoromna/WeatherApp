@@ -25,6 +25,7 @@ class WeatherTableViewController: UITableViewController {
         return listOfWeather.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseId,
                                                             for: indexPath)
             as? WeatherTableViewCell else {fatalError("Bad Cell")}
