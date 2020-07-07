@@ -15,7 +15,7 @@ struct SavedCityRequest {
         self.urlresource = urlresource
     }
     
-    func getWeather(completion: @escaping(Result<SectionIdType, SavedCityError>) -> Void) {
+    func getWeather(completion: @escaping(Result<OneCallAPI, SavedCityError>) -> Void) {
         
         var resourceCityURL = URLRequest(url: urlresource, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         
@@ -30,7 +30,7 @@ struct SavedCityRequest {
             }
             do {
                 let decoder = JSONDecoder()
-                let weatherResponse = try decoder.decode(SectionIdType.self, from: jsonData)
+                let weatherResponse = try decoder.decode(OneCallAPI.self, from: jsonData)
                 print(weatherResponse)
                 let weatherDetails = weatherResponse
                 completion(.success(weatherDetails))

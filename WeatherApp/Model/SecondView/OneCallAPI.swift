@@ -9,10 +9,14 @@
 import Foundation
 import UIKit
 
-struct SectionIdType: Decodable, Hashable {
+//struct OneCallAPIResponse: Codable {
+//    var list: [AppWeatherModel]
+//}
+
+struct OneCallAPI: Decodable, Hashable {
     var lat: Float
     var lon: Float
-    var hourly: [HourlyWeather]
-    var daily: [DailyWeather]
+    var hourly: [HourlyWeatherAPI]
+    var daily: [DailyWeatherAPI]
 }
 
