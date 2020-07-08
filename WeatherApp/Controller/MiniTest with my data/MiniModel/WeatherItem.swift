@@ -11,10 +11,8 @@ import UIKit
 
 struct WeatherItem: Decodable, Hashable {
     
-    var dt: Int64
-    var temp: Float
-    var pressure: Int32
-    var humidity: Int
-    var wind_speed: Float
+    let dt: String
+    let temp: String
+    let icon: String
     
 }

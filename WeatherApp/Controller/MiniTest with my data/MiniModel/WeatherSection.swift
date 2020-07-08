@@ -11,9 +11,8 @@ import UIKit
 
 struct WeatherSection: Decodable, Hashable {
     
-    var lat: Float
-    var lon: Float
-    var type: String
-    var items: [WeatherItem]
+    let type: String
+    let title: String
+    let items: [WeatherItem]
     
 }

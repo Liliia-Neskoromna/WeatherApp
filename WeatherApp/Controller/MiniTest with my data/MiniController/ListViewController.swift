@@ -10,12 +10,12 @@ import UIKit
 
 class ListViewController: UIViewController {
     
-    let sections = Bundle.main.decode(
+    let sections = Bundle.main.decode([WeatherSection].self, from: "model.geojson")
     
        // Bundle.main.decode([WeatherSection].self, from: "model.geojson")
     var collectionView: UICollectionView!
     
-    var dataSourse: UICollectionViewDiffableDataSource<MSection, MChat>?
+    var dataSourse: UICollectionViewDiffableDataSource<WeatherSection, WeatherItem>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,8 @@ class ListViewController: UIViewController {
         collectionView.backgroundColor = .lightGray
         view.addSubview(collectionView)
         
-        collectionView.register(ActiveChatCell.self, forCellWithReuseIdentifier: ActiveChatCell.reuseId)
-        collectionView.register(WaitingChatCell.self, forCellWithReuseIdentifier: WaitingChatCell.reuseId)
+        collectionView.register(HourlyWeatherCell.self, forCellWithReuseIdentifier: HourlyWeatherCell.reuseId)
+        collectionView.register(DailyWeatherCell.self, forCellWithReuseIdentifier: DailyWeatherCell.reuseId)
         
         collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseId)
 
@@ -42,14 +42,14 @@ class ListViewController: UIViewController {
     }
     
     func createDataSource() {
-        dataSourse = UICollectionViewDiffableDataSource<MSection, MChat>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, chat) -> UICollectionViewCell? in
+        dataSourse = UICollectionViewDiffableDataSource<WeatherSection, WeatherItem>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, chat) -> UICollectionViewCell? in
             switch self.sections[indexPath.section].type {
-            case "activeChats":
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActiveChatCell.reuseId, for: indexPath) as? ActiveChatCell
+            case "hourly":
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyWeatherCell.reuseId, for: indexPath) as? HourlyWeatherCell
                 cell?.configure(with: chat)
                 return cell
             default:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaitingChatCell.reuseId, for: indexPath) as? WaitingChatCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyWeatherCell.reuseId, for: indexPath) as? DailyWeatherCell
                 cell?.configure(with: chat)
                 return cell
             }
@@ -59,12 +59,12 @@ class ListViewController: UIViewController {
             collectionView, kind, indexPath in
             guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reuseId, for: indexPath) as? SectionHeader else { return nil}
             
-            guard let firstChat = self.dataSourse?.itemIdentifier(for: indexPath) else { return nil }
+            guard let firstItem = self.dataSourse?.itemIdentifier(for: indexPath) else { return nil }
             
-            guard let section = self.dataSourse?.snapshot().sectionIdentifier(containingItem: firstChat) else { return nil }
-            if section.title.isEmpty { return nil }
+            guard let section = self.dataSourse?.snapshot().sectionIdentifier(containingItem: firstItem) else { return nil }
+            if section.dt.isEmpty { return nil }
             
-            sectionHeader.title.text = section.title
+            sectionHeader.title.text = section.dt
             return sectionHeader
         }
         
