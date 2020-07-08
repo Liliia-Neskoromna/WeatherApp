@@ -1,36 +1,34 @@
 [
     {
-        {
-            "type": "hourly"
-            "title": "Hourly",
-            "items": [
-                {
-                    "dt": "25.09.20",
-                    "temp": "15°C",
-                    "icon": "sun"
-                },
-                {
-                    "dt": "26.09.20",
-                    "temp": "16°C",
-                    "icon": "sun"
-                }
-            ]
-        }
-        {
-            "type": "daily"
-            "title": "Daily",
-            "items": [
-                {
-                    "dt": "25.09.20",
-                    "temp": "30°C",
-                    "icon": "cloud"
-                },
-                {
-                    "dt": "26.09.20",
-                    "temp": "31°C",
-                    "icon": "cloud"
-                }
-            ]
-        }
+        "type": "hourly"
+        "title": "Hourly",
+        "items": [
+            {
+                "dt": "25.09.20",
+                "temp": "15°C",
+                "icon": "sun"
+            },
+            {
+                "dt": "26.09.20",
+                "temp": "16°C",
+                "icon": "sun"
+            }
+        ]
+    },
+    {
+        "type": "daily"
+        "title": "Daily",
+        "items": [
+            {
+                "dt": "25.09.20",
+                "temp": "30°C",
+                "icon": "cloud"
+            },
+            {
+                "dt": "26.09.20",
+                "temp": "31°C",
+                "icon": "cloud"
+            }
+        ]
     }
 ]

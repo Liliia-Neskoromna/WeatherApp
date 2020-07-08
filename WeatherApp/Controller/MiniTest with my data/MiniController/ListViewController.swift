@@ -12,7 +12,6 @@ class ListViewController: UIViewController {
     
     let sections = Bundle.main.decode([WeatherSection].self, from: "model.json")
     
-       // Bundle.main.decode([WeatherSection].self, from: "model.geojson")
     var collectionView: UICollectionView!
     
     var dataSourse: UICollectionViewDiffableDataSource<WeatherSection, WeatherItem>?
