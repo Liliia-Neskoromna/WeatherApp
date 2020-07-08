@@ -10,7 +10,7 @@ import UIKit
 
 class ListViewController: UIViewController {
     
-    let sections = Bundle.main.decode([WeatherSection].self, from: "model.geojson")
+    let sections = Bundle.main.decode([WeatherSection].self, from: "model.json")
     
        // Bundle.main.decode([WeatherSection].self, from: "model.geojson")
     var collectionView: UICollectionView!
@@ -62,16 +62,16 @@ class ListViewController: UIViewController {
             guard let firstItem = self.dataSourse?.itemIdentifier(for: indexPath) else { return nil }
             
             guard let section = self.dataSourse?.snapshot().sectionIdentifier(containingItem: firstItem) else { return nil }
-            if section.dt.isEmpty { return nil }
+            if section.title.isEmpty { return nil }
             
-            sectionHeader.title.text = section.dt
+            sectionHeader.title.text = section.title
             return sectionHeader
         }
         
     }
     
     func reloadData() {
-        var snapshot = NSDiffableDataSourceSnapshot<MSection, MChat>()
+        var snapshot = NSDiffableDataSourceSnapshot<WeatherSection, WeatherItem>()
         snapshot.appendSections(sections)
         
         for section in sections {
