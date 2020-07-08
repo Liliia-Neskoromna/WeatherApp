@@ -17,10 +17,9 @@ struct HourlyWeatherAPI: Decodable, Hashable {
     var wind_speed: Float
     var weather: [HWeather]
     
-    func mapTo(_: HourlyWeatherAPI) -> AppHourly  {
+    func mapTo(initialStruct: Array<HourlyWeatherAPI>) -> [AppHourly]  {
         
-        let initialStruct = [HourlyWeatherAPI]()
-        var endStruct = [AppHourly]()
+        var endStruct: Array<AppHourly> = [AppHourly]()
         
         for initial in initialStruct {
             let dt = initial.dt
@@ -31,25 +30,25 @@ struct HourlyWeatherAPI: Decodable, Hashable {
             let wind_speed = initial.wind_speed
             let weather = initial.weather
             
-            let yybh = AppHourly(
-            let item: AppHourly = AppHourly
-            (dt: dt,
-                                                      temp: temp,
-                                                      pressure: pressure,
-                                                      humidity: humidity,
-                                                      wind_speed: wind_speed,
-                                                      weather: weather)
-            arrayWeather.append(item)
-            
+            let item: AppHourly = AppHourly(dt: dt,
+                                            temp: temp,
+                                            pressure: pressure,
+                                            humidity: humidity,
+                                            wind_speed: wind_speed,
+                                            weather: weather)
+            endStruct.append(item)
         }
-        return arrayWeather
+        
+        return endStruct
     }
+}
+
+struct HTemperature: Decodable, Hashable {
+    var day: Float
+    var night: Int?
 }
 
 struct HWeather: Decodable, Hashable {
     var main: String
     var icon: String
 }
-
-
-

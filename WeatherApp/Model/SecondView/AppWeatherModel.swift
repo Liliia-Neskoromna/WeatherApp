@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-struct AppWeatherModel: Codable {
+struct AppWeatherModel: Decodable, Hashable {
     var lat: Float
     var lon: Float
     var hourly: [AppHourly]
@@ -10,43 +10,41 @@ struct AppWeatherModel: Codable {
 
 //____________________________________
 
-struct AppHourly: Codable {
+struct AppHourly: Decodable, Hashable {
     var dt: Int64
-    var temp: AppHourlyTemperature
-    var feels_like: Float
+    var temp: HTemperature
     var pressure: Int32
     var humidity: Int
     var wind_speed: Float
-    var weather: [AppHourlyWeather]
+    var weather: [HWeather]
 }
-
-struct AppHourlyTemperature: Codable {
-    var day: Float
-    var night: Float
-}
-struct AppHourlyWeather: Codable {
-    var main: String
-    var icon: String
-}
+//struct AppHourlyTemperature: Decodable, Hashable {
+//    var day: Float
+//    var night: Float
+//}
+//struct AppHourlyWeather: Decodable, Hashable {
+//    var main: String
+//    var icon: String
+//}
 
 //____________________________________
 
-struct AppDaily: Codable {
+struct AppDaily: Decodable, Hashable {
     var dt: Int64
-    var temp: AppDailyTemperature
+    var temp: DTemperature
     var pressure: Int32
     var humidity: Int
     var wind_speed: Float
-    var weather: [AppDailyWeather]
+    var weather: [DWeather]
 }
 
-struct AppDailyTemperature: Codable {
-    var day: Float
-    var night: Float
-}
-
-struct AppDailyWeather: Codable {
-    var main: String
-    var icon: String
-}
+//struct AppDailyTemperature: Decodable, Hashable {
+//    var day: Float
+//    var night: Float
+//}
+//
+//struct AppDailyWeather: Decodable, Hashable {
+//    var main: String
+//    var icon: String
+//}
 

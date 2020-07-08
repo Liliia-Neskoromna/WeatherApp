@@ -18,5 +18,7 @@ struct OneCallAPI: Decodable, Hashable {
     var lon: Float
     var hourly: [HourlyWeatherAPI]
     var daily: [DailyWeatherAPI]
+    
+    
 }
 

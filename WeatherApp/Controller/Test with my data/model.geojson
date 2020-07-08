@@ -1,0 +1,33 @@
+{
+    {
+        "lat": 33.44,
+        "lon": -94.04,
+        "type": "hourly"
+        "items": [
+            {
+                "dt": 1594119600,
+                "temp": 295.99,
+                "pressure": 1015,
+                "humidity": 94,
+                "wind_speed": 1.96,
+            },
+            
+            
+        ],
+    }
+    {
+        "lat": 33.44,
+        "lon": -94.04,
+        "type": "daily"
+        "items": [
+            {
+                "dt": 1594144800,
+                "temp": 300.29
+                "pressure": 1014,
+                "humidity": 79,
+                "wind_speed": 4.59,
+            },
+            
+        ]
+    }
+}

@@ -16,34 +16,31 @@ struct DailyWeatherAPI: Decodable, Hashable {
     var humidity: Int
     var wind_speed: Float
     var weather: [DWeather]
-    
-    let initialStruct = [DailyWeatherAPI]()
-    var endStruct =
 
-    //
-    //    func mapTo(_: HourlyWeather) -> WeatherForItem  {
-    //        for initial in firstStruct {
-    //            let dt = initial.dt
-    //            let nigth = 0
-    //            let temp = HTemperature(day: initial.temp, night: nigth)
-    //            let pressure = initial.pressure
-    //            let humidity = initial.humidity
-    //            let wind_speed = initial.wind_speed
-    //            let weather = initial.weather
-    //
-    //            let item: WeatherForItem = WeatherForItem(dt: dt,
-    //                                                                  temp: temp,
-    //                                                                  pressure: pressure,
-    //                                                                  humidity: humidity,
-    //                                                                  wind_speed: wind_speed,
-    //                                                                  weather: weather)
-    //            arrayWeather.append(item)
-    //
-    //        }
-    //        return arrayWeather
-    //    }
     
-    
+    func mapTo(initialStruct: Array<DailyWeatherAPI>) -> [AppDaily]  {
+        
+        var endStruct: Array<AppDaily> = [AppDaily]()
+                
+        for initial in initialStruct {
+            let dt = initial.dt
+            let temp = DTemperature(day: initial.temp.day, night: initial.temp.night)
+            let pressure = initial.pressure
+            let humidity = initial.humidity
+            let wind_speed = initial.wind_speed
+            let weather = initial.weather
+            
+            let item: AppDaily = AppDaily(dt: dt,
+                                            temp: temp,
+                                            pressure: pressure,
+                                            humidity: humidity,
+                                            wind_speed: wind_speed,
+                                            weather: weather)
+            endStruct.append(item)
+        }
+        
+        return endStruct
+    }
 }
 
 struct DTemperature: Decodable, Hashable {
