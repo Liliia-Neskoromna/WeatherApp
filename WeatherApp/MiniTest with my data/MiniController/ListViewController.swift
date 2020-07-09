@@ -11,14 +11,14 @@ import UIKit
 class ListViewController: UIViewController {
     
     let sections = Bundle.main.decode([WeatherSection].self, from: "model.json")
-    
+
     var collectionView: UICollectionView!
     
     var dataSourse: UICollectionViewDiffableDataSource<WeatherSection, WeatherItem>?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         view.backgroundColor = .orange
         setupCollectionView()
         createDataSource()
@@ -35,20 +35,20 @@ class ListViewController: UIViewController {
         collectionView.register(DailyWeatherCell.self, forCellWithReuseIdentifier: DailyWeatherCell.reuseId)
         
         collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseId)
-
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
+        
+        //        collectionView.delegate = self
+        //        collectionView.dataSource = self
     }
     
     func createDataSource() {
         dataSourse = UICollectionViewDiffableDataSource<WeatherSection, WeatherItem>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, chat) -> UICollectionViewCell? in
             switch self.sections[indexPath.section].type {
-            case "hourly":
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyWeatherCell.reuseId, for: indexPath) as? HourlyWeatherCell
+            case "daily":
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyWeatherCell.reuseId, for: indexPath) as? DailyWeatherCell
                 cell?.configure(with: chat)
                 return cell
             default:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyWeatherCell.reuseId, for: indexPath) as? DailyWeatherCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyWeatherCell.reuseId, for: indexPath) as? HourlyWeatherCell
                 cell?.configure(with: chat)
                 return cell
             }
@@ -85,16 +85,16 @@ class ListViewController: UIViewController {
             let section = self.sections[sectionIndex]
             
             switch section.type {
-            case "activeChats":
-                return self.createActiveChatSection()
+            case "daily":
+                return self.createDailySection()
             default:
-                return self.createWaitingChatSection()
+                return self.createHourlySection()
             }
         }
         return layout
     }
     
-    func createWaitingChatSection() -> NSCollectionLayoutSection {
+    func createHourlySection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .fractionalHeight(1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -115,7 +115,7 @@ class ListViewController: UIViewController {
         
         return layoutSection
     }
-    func createActiveChatSection() -> NSCollectionLayoutSection {
+    func createDailySection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(86))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)

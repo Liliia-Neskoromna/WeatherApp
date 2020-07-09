@@ -1,33 +1,93 @@
 [
     {
-        "type": "hourly"
+        "type": "hourly",
         "title": "Hourly",
         "items": [
             {
                 "dt": "25.09.20",
                 "temp": "15°C",
-                "icon": "sun"
+                "icon": "cloud"
             },
             {
                 "dt": "26.09.20",
                 "temp": "16°C",
-                "icon": "sun"
+                "icon": "cloud"
+            },
+            {
+                "dt": "27.09.20",
+                "temp": "17°C",
+                "icon": "cloud"
+            },
+            {
+                "dt": "28.09.20",
+                "temp": "18°C",
+                "icon": "cloud"
+            },
+            {
+                "dt": "29.09.20",
+                "temp": "19°C",
+                "icon": "cloud"
+            },
+            {
+                "dt": "30.09.20",
+                "temp": "20°C",
+                "icon": "cloud"
             }
         ]
     },
     {
-        "type": "daily"
+        "type": "daily",
         "title": "Daily",
         "items": [
             {
                 "dt": "25.09.20",
                 "temp": "30°C",
-                "icon": "cloud"
+                "icon": "sun"
             },
             {
                 "dt": "26.09.20",
                 "temp": "31°C",
-                "icon": "cloud"
+                "icon": "sun"
+            },
+            {
+                "dt": "27.09.20",
+                "temp": "32°C",
+                "icon": "sun"
+            },
+            {
+                "dt": "28.09.20",
+                "temp": "33°C",
+                "icon": "sun"
+            },
+            {
+                "dt": "29.09.20",
+                "temp": "34°C",
+                "icon": "sun"
+            },
+            {
+                "dt": "30.09.20",
+                "temp": "35°C",
+                "icon": "sun"
+            },
+            {
+                "dt": "31.09.20",
+                "temp": "36°C",
+                "icon": "sun"
+            },
+            {
+                "dt": "32.09.20",
+                "temp": "37°C",
+                "icon": "sun"
+            },
+            {
+                "dt": "33.09.20",
+                "temp": "38°C",
+                "icon": "sun"
+            },
+            {
+                "dt": "40.09.20",
+                "temp": "39°C",
+                "icon": "sun"
             }
         ]
     }
