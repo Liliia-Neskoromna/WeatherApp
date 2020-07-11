@@ -3,21 +3,27 @@ import UIKit
 class WeatherTableViewController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     let kReUseId: String = "weatherTableViewCell"
-    //    let defaults = UserDefaults.standard
     var listOfWeather = [WeatherDetails]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                self.navigationItem.title = "\(self.listOfWeather.count) Holidays found"
+                self.navigationItem.title = "\(self.listOfWeather.count) city found"
             }
         }
     }
+    let second = ListViewController()
+    
+    @IBAction func goToSavedCities(_ sender: UIButton) {
+        let page = ListViewController()
+        present(page, animated: true, completion: nil)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        tableView.delegate = self
-        //        tableView.dataSource = self
         searchBar.delegate = self
     }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

@@ -28,7 +28,7 @@ class ListViewController: UIViewController {
     func setupCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .gray
         view.addSubview(collectionView)
         
         collectionView.register(HourlyWeatherCell.self, forCellWithReuseIdentifier: HourlyWeatherCell.reuseId)
@@ -108,9 +108,10 @@ class ListViewController: UIViewController {
         
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
         layoutSection.orthogonalScrollingBehavior = .continuous
-        layoutSection.contentInsets = NSDirectionalEdgeInsets.init(top: 12, leading: 20, bottom: 0, trailing: 12)
+        layoutSection.contentInsets = NSDirectionalEdgeInsets.init(top: 12, leading: 12, bottom: 0, trailing: 12)
         
         let header = createSectionHeader()
+        header.contentInsets = NSDirectionalEdgeInsets.init(top: 12, leading: 0, bottom: 0, trailing: 12)
         layoutSection.boundarySupplementaryItems = [header]
         
         return layoutSection
@@ -143,32 +144,6 @@ class ListViewController: UIViewController {
         return layoutSectionHeader
     }
 }
-//extension ListViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: view.frame.width, height: 76)
-//    }
-//}
-
-//extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-//
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return sections.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return sections[section].items.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActiveChatCell.reuseId, for: indexPath) as! ActiveChatCell
-//        let section = sections[indexPath.section]
-//        let item = section.items[indexPath.item]
-//
-//        cell.configure(with: item)
-//        return cell
-//    }
-//}
-
 // MARK: - SwiftUI
 import SwiftUI
 struct ListProvider: PreviewProvider {

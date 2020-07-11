@@ -14,7 +14,6 @@
 		223697E92423A01B00DD2209 /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 223697E72423A01B00DD2209 /* WeatherApp.xcdatamodeld */; };
 		223697EB2423A01C00DD2209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 223697EA2423A01C00DD2209 /* Assets.xcassets */; };
 		223697EE2423A01C00DD2209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 223697EC2423A01C00DD2209 /* LaunchScreen.storyboard */; };
-		223698012423D69200DD2209 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223698002423D69200DD2209 /* Service.swift */; };
 		22420164242901EF00F41500 /* WeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22420163242901EF00F41500 /* WeatherRequest.swift */; };
 		2265D9FA242923E700FF1346 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265D9F9242923E700FF1346 /* WeatherModel.swift */; };
 		22793AD624333A90006AC71B /* CitySearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22793AD524333A90006AC71B /* CitySearchRequest.swift */; };
@@ -47,7 +46,6 @@
 		223697EA2423A01C00DD2209 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		223697ED2423A01C00DD2209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		223697EF2423A01C00DD2209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		223698002423D69200DD2209 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		223BC8842437886600ACC1D9 /* SwiftLintFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftLintFramework.framework; path = Frameworks/SwiftLintFramework.framework; sourceTree = "<group>"; };
 		223BC8852437886600ACC1D9 /* SwiftLintFramework.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftLintFramework.framework.dSYM; path = Frameworks/SwiftLintFramework.framework.dSYM; sourceTree = "<group>"; };
 		22420163242901EF00F41500 /* WeatherRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequest.swift; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 			children = (
 				223697DE2423A01B00DD2209 /* AppDelegate.swift */,
 				223697E02423A01B00DD2209 /* SceneDelegate.swift */,
-				223698002423D69200DD2209 /* Service.swift */,
 				22E7E9302427BC0F0099E627 /* WeatherTableViewController.swift */,
 				22E7E9342427CB950099E627 /* WeatherTableViewCell.swift */,
 				22793AD524333A90006AC71B /* CitySearchRequest.swift */,
@@ -300,7 +297,6 @@
 				223697E12423A01B00DD2209 /* SceneDelegate.swift in Sources */,
 				22AFE63024B363A9005DC110 /* DailyWeatherAPI.swift in Sources */,
 				22C1136F24B5C60B0073AE47 /* Bundle + Extension.swift in Sources */,
-				223698012423D69200DD2209 /* Service.swift in Sources */,
 				22C1136D24B5C3820073AE47 /* WeatherItem.swift in Sources */,
 				22AFE62E24B3639B005DC110 /* HourlyWeatherAPI.swift in Sources */,
 				22793AD624333A90006AC71B /* CitySearchRequest.swift in Sources */,

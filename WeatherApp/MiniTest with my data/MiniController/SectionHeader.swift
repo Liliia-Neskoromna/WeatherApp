@@ -22,14 +22,15 @@ class SectionHeader: UICollectionReusableView {
     }
     
     private func customiseElements() {
-        title.textColor = .black
-        title.font = UIFont(name: "avenir", size: 20)
+        title.textColor = .orange
+        title.font = UIFont(name: "avenir", size: 25)
         title.translatesAutoresizingMaskIntoConstraints = false
     }
     private func setupConstraints() {
         addSubview(title)
         NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: topAnchor),
+            title.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            //(equalTo: topAnchor),
             title.leadingAnchor.constraint(equalTo: leadingAnchor),
             title.trailingAnchor.constraint(equalTo: trailingAnchor),
             title.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -40,5 +41,6 @@ class SectionHeader: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+
 }
 
