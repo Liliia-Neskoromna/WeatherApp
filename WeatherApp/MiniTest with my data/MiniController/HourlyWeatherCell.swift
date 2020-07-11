@@ -35,7 +35,7 @@ class HourlyWeatherCell: UICollectionViewCell {
     
     func configure(with city: WeatherItem) {
         temp.text = city.temp
-        temp.textColor = .blue
+        temp.textColor = .systemBlue
         temp.font = UIFont(name: "avenir", size: 18)
         dt.text = city.dt
         dt.textColor = .darkGray
