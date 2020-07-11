@@ -100,8 +100,8 @@ class ListViewController: UIViewController {
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
         layoutItem.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 8, bottom: 0, trailing: 8)
         
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .estimated(104),
-                                                     heightDimension: .estimated(88))
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .estimated(100),
+                                                     heightDimension: .estimated(112))
         
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize,
                                                              subitems: [layoutItem])
