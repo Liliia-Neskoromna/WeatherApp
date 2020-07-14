@@ -35,6 +35,10 @@ class ListViewController: UIViewController {
         createDataSource()
         reloadData()
     }
+    func getWeatherForApp() {
+        let hourlyWeather = OneCallAPI.H
+    }
+    
     
     func getSavedCityWeather() {
         

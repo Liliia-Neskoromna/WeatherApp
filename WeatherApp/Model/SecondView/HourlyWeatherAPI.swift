@@ -17,30 +17,53 @@ struct HourlyWeatherAPI: Decodable, Hashable {
     var wind_speed: Float
     var weather: [HWeather]
     
-    func mapTo(initialStruct: Array<HourlyWeatherAPI>) -> [AppHourly]  {
+    
+    func mapTo() -> AppHourly  {
         
-        var endStruct: Array<AppHourly> = [AppHourly]()
+        let dt = self.dt
         
-        for initial in initialStruct {
-            let dt = initial.dt
-            let nigth = 0
-            let temp = HTemperature(day: initial.temp, night: nigth)
-            let pressure = initial.pressure
-            let humidity = initial.humidity
-            let wind_speed = initial.wind_speed
-            let weather = initial.weather
-            
-            let item: AppHourly = AppHourly(dt: dt,
-                                            temp: temp,
-                                            pressure: pressure,
-                                            humidity: humidity,
-                                            wind_speed: wind_speed,
-                                            weather: weather)
-            endStruct.append(item)
-        }
+        let night = 0
+        let day = self.temp
+        let temp = HTemperature(day: day, night: night)
         
-        return endStruct
+        let pressure = self.pressure
+        let humidity = self.humidity
+        let wind_speed = self.wind_speed
+        let weather = self.weather
+        
+        let item: AppHourly = AppHourly(dt: dt,
+                                        temp: temp,
+                                        pressure: pressure,
+                                        humidity: humidity,
+                                        wind_speed: wind_speed,
+                                        weather: weather)
+        return item
     }
+    
+    //    func mapTo(initialStruct: Array<HourlyWeatherAPI>) -> [AppHourly]  {
+    //
+    //        var endStruct: Array<AppHourly> = [AppHourly]()
+    //
+    //        for initial in initialStruct {
+    //            let dt = initial.dt
+    //            let nigth = 0
+    //            let temp = HTemperature(day: initial.temp, night: nigth)
+    //            let pressure = initial.pressure
+    //            let humidity = initial.humidity
+    //            let wind_speed = initial.wind_speed
+    //            let weather = initial.weather
+    //
+    //            let item: AppHourly = AppHourly(dt: dt,
+    //                                            temp: temp,
+    //                                            pressure: pressure,
+    //                                            humidity: humidity,
+    //                                            wind_speed: wind_speed,
+    //                                            weather: weather)
+    //            endStruct.append(item)
+    //        }
+    //
+    //        return endStruct
+    //    }
 }
 
 struct HTemperature: Decodable, Hashable {
