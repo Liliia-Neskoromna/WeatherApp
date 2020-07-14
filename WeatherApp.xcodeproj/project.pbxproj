@@ -97,6 +97,7 @@
 				22E7E9342427CB950099E627 /* WeatherTableViewCell.swift */,
 				22793AD524333A90006AC71B /* CitySearchRequest.swift */,
 				22AFE62624B35B94005DC110 /* SavedCityWeatherRequest.swift */,
+				22420163242901EF00F41500 /* WeatherRequest.swift */,
 				223697E42423A01B00DD2209 /* Main.storyboard */,
 				223697FF2423D0B200DD2209 /* Model */,
 				22AFE62C24B3612A005DC110 /* Controller */,
@@ -132,7 +133,6 @@
 		22793AD8243374A3006AC71B /* Get from cities Id's */ = {
 			isa = PBXGroup;
 			children = (
-				22420163242901EF00F41500 /* WeatherRequest.swift */,
 			);
 			path = "Get from cities Id's";
 			sourceTree = "<group>";

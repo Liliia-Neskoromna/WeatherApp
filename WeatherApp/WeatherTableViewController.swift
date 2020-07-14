@@ -2,6 +2,7 @@ import UIKit
 
 class WeatherTableViewController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
+        
     let kReUseId: String = "weatherTableViewCell"
     var listOfWeather = [WeatherDetails]() {
         didSet {
@@ -11,11 +12,13 @@ class WeatherTableViewController: UITableViewController {
             }
         }
     }
+    
     let second = ListViewController()
     
     @IBAction func goToSavedCities(_ sender: UIButton) {
         let page = ListViewController()
         present(page, animated: true, completion: nil)
+        print(ListViewController())
         
     }
     

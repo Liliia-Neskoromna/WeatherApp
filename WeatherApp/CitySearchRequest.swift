@@ -8,23 +8,10 @@ enum CityError: Error {
 struct CityRequest {
     let urlresource: URL
 
-    //    let headers = [
-    //        "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-    //        "x-rapidapi-key": "cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86"
-    //    ]
-
     init (cityName: String) {
         let resourceString = "https://community-open-weather-map.p.rapidapi.com/weather?q=\(cityName)&units=metric"
         guard let urlresource = URL(string: resourceString) else { fatalError() }
 
-//        self.resourceCityURL.setTemporaryResourceValue
-//        ("cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86",
-//        forKey: URLResourceKey(rawValue: "x-rapidapi-key"))
-//        resourceCityURL.query =
-//            [
-//            URLQueryItem(name: "x-rapidapi-host", value: "community-open-weather-map.p.rapidapi.com"),
-//            URLQueryItem(name: "x-rapidapi-key", value: "cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86"),
-//        ]
         self.urlresource = urlresource
     }
 
@@ -44,7 +31,7 @@ struct CityRequest {
             do {
                 let decoder = JSONDecoder()
                 let weatherResponse = try decoder.decode(WeatherDetails.self, from: jsonData)
-                print(weatherResponse)
+                //print(weatherResponse)
                 let weatherDetails = weatherResponse
                 completion(.success(weatherDetails))
             } catch {

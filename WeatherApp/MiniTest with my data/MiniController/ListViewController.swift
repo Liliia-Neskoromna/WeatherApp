@@ -10,19 +10,44 @@ import UIKit
 
 class ListViewController: UIViewController {
     
-    let sections = Bundle.main.decode([WeatherSection].self, from: "model.json")
-
+    var sections = Bundle.main.decode([WeatherSection].self, from: "model.json")
+    
+    var list = [OneCallAPI]()
+    
+//    {
+//        didSet {
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
+//    }
+    
     var collectionView: UICollectionView!
     
     var dataSourse: UICollectionViewDiffableDataSource<WeatherSection, WeatherItem>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getSavedCityWeather()
         
         view.backgroundColor = .orange
         setupCollectionView()
         createDataSource()
         reloadData()
+    }
+    
+    func getSavedCityWeather() {
+        
+        let weatherRequest = SavedCityRequest()
+        weatherRequest.getWeather { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let weather):
+                self?.list = [weather]
+                print(weather)
+            }
+        }
     }
     
     func setupCollectionView() {
@@ -35,9 +60,6 @@ class ListViewController: UIViewController {
         collectionView.register(DailyWeatherCell.self, forCellWithReuseIdentifier: DailyWeatherCell.reuseId)
         
         collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseId)
-        
-        //        collectionView.delegate = self
-        //        collectionView.dataSource = self
     }
     
     func createDataSource() {
