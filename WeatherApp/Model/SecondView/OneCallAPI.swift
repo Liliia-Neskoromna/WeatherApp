@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-//struct OneCallAPIResponse: Codable {
-//    var list: [AppWeatherModel]
-//}
-
 struct CityWeatherResponse: Decodable {
     var list: [OneCallAPI]
 }

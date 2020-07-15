@@ -18,8 +18,6 @@ class WeatherTableViewController: UITableViewController {
     @IBAction func goToSavedCities(_ sender: UIButton) {
         let page = ListViewController()
         present(page, animated: true, completion: nil)
-        print(ListViewController())
-        
     }
     
     override func viewDidLoad() {

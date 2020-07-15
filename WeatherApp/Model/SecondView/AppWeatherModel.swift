@@ -1,14 +1,45 @@
 import Foundation
 import UIKit
 
-struct AppWeatherModel: Decodable, Hashable {
+struct AppWeatherModelSection: Decodable, Hashable {
     var lat: Float
     var lon: Float
-    var hourly: [AppHourly]
-    var daily: [AppDaily]
+    var hourly: [AppHourlyDailyItem]
+    var daily: [AppHourlyDailyItem]
 }
 
-//____________________________________
+struct AppHourlyDailyItem: Decodable, Hashable {
+    var dt: Int64
+    var temp: AppTemperature
+    var pressure: Int32
+    var humidity: Int
+    var wind_speed: Float
+    var weather: [AppWeather]
+}
+
+struct AppTemperature: Decodable, Hashable {
+    var day: Float
+    var night: Float
+}
+
+struct AppWeather: Decodable, Hashable {
+    var main: String
+    var icon: String
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 struct AppHourly: Decodable, Hashable {
     var dt: Int64
@@ -18,6 +49,7 @@ struct AppHourly: Decodable, Hashable {
     var wind_speed: Float
     var weather: [HWeather]
 }
+
 //struct AppHourlyTemperature: Decodable, Hashable {
 //    var day: Float
 //    var night: Float

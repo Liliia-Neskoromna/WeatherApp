@@ -31,7 +31,7 @@ struct SavedCityRequest {
             do {
                 let decoder = JSONDecoder()
                 let weatherResponse = try decoder.decode(OneCallAPI.self, from: jsonData)
-                print("SavedCityRequest is working: \(weatherResponse)")
+                //print("SavedCityRequest is working: \(weatherResponse)")
                 completion(.success(weatherResponse))
             } catch {
                 completion(.failure(.canNotProcessDataSavedCity))

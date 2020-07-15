@@ -34,14 +34,16 @@ class DailyWeatherCell: UICollectionViewCell {
         icon.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func configure(with city: WeatherItem) {
-        temp.text = city.temp
+    func configure(with city: AppHourlyDailyItem) {
+        temp.text = String(city.temp.day)
         temp.textColor = .systemBlue
         temp.font = UIFont(name: "avenir", size: 26)
-        dt.text = city.dt
+        dt.text = String(city.dt)
         dt.textColor = .darkGray
         dt.font = UIFont(name: "avenir", size: 23)
-        icon.image = UIImage(named: city.icon)
+        for element in city.weather {
+            icon.image = UIImage(named: element.icon)
+        }
     }
 
     required init?(coder: NSCoder) {

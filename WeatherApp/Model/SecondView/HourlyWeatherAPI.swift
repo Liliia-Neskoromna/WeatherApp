@@ -17,52 +17,68 @@ struct HourlyWeatherAPI: Decodable, Hashable {
     var wind_speed: Float
     var weather: [HWeather]
     
-    
-    func mapTo() -> AppHourly  {
+    func mapTo() -> AppHourlyDailyItem  {
         
         let dt = self.dt
         
-        let night = 0
+        let night = Float()
         let day = self.temp
-        let temp = HTemperature(day: day, night: night)
+        let temp = AppTemperature(day: day, night: night)
         
         let pressure = self.pressure
         let humidity = self.humidity
         let wind_speed = self.wind_speed
-        let weather = self.weather
         
-        let item: AppHourly = AppHourly(dt: dt,
-                                        temp: temp,
-                                        pressure: pressure,
-                                        humidity: humidity,
-                                        wind_speed: wind_speed,
-                                        weather: weather)
+        var weather: Array<AppWeather> = [AppWeather]()
+        
+        for each in self.weather {
+            let main = each.main
+            let icon = each.icon
+            
+            let newWeather = AppWeather(main: main, icon: icon)
+            weather.append(newWeather)
+            //print(weather)
+        }
+        
+        let item: AppHourlyDailyItem = AppHourlyDailyItem(dt: dt,
+                                                          temp: temp,
+                                                          pressure: pressure,
+                                                          humidity: humidity,
+                                                          wind_speed: wind_speed,
+                                                          weather: weather)
         return item
     }
     
-    //    func mapTo(initialStruct: Array<HourlyWeatherAPI>) -> [AppHourly]  {
+    //    func mapTo() -> AppHourly  {
     //
-    //        var endStruct: Array<AppHourly> = [AppHourly]()
+    //        let dt = self.dt
     //
-    //        for initial in initialStruct {
-    //            let dt = initial.dt
-    //            let nigth = 0
-    //            let temp = HTemperature(day: initial.temp, night: nigth)
-    //            let pressure = initial.pressure
-    //            let humidity = initial.humidity
-    //            let wind_speed = initial.wind_speed
-    //            let weather = initial.weather
+    //        let night = 0
+    //        let day = self.temp
+    //        let temp = HTemperature(day: day, night: night)
     //
-    //            let item: AppHourly = AppHourly(dt: dt,
-    //                                            temp: temp,
-    //                                            pressure: pressure,
-    //                                            humidity: humidity,
-    //                                            wind_speed: wind_speed,
-    //                                            weather: weather)
-    //            endStruct.append(item)
-    //        }
+    //        let pressure = self.pressure
+    //        let humidity = self.humidity
+    //        let wind_speed = self.wind_speed
     //
-    //        return endStruct
+    ////        var weather: Array<AppWeather> = [AppWeather]()
+    ////
+    ////        for each in self.weather {
+    ////            let main = each.main
+    ////            let icon = each.icon
+    ////
+    ////            let newWeather = AppWeather(main: main, icon: icon)
+    ////            weather.append(newWeather)
+    ////        }
+    //        let weather = self.weather
+    //
+    //        let item: AppHourly = AppHourly(dt: dt,
+    //                                        temp: temp,
+    //                                        pressure: pressure,
+    //                                        humidity: humidity,
+    //                                        wind_speed: wind_speed,
+    //                                        weather: weather)
+    //        return item
     //    }
 }
 

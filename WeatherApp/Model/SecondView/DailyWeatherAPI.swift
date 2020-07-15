@@ -17,25 +17,35 @@ struct DailyWeatherAPI: Decodable, Hashable {
     var wind_speed: Float
     var weather: [DWeather]
     
-    func mapTo() -> AppDaily  {
+    func mapTo() -> AppHourlyDailyItem  {
         
         let dt = self.dt
         
         let day = self.temp.day
         let night = self.temp.night
-        let temp = DTemperature(day: day, night: night)
+        let temp = AppTemperature(day: day, night: night)
         
         let pressure = self.pressure
         let humidity = self.humidity
         let wind_speed = self.wind_speed
-        let weather = self.weather
         
-        let item: AppDaily = AppDaily(dt: dt,
-                                      temp: temp,
-                                      pressure: pressure,
-                                      humidity: humidity,
-                                      wind_speed: wind_speed,
-                                      weather: weather)
+        var weather: Array<AppWeather> = [AppWeather]()
+        
+        for each in self.weather {
+            let main = each.main
+            let icon = each.icon
+            
+            let newWeather = AppWeather(main: main, icon: icon)
+            weather.append(newWeather)
+            //print(weather)
+        }
+        
+        let item: AppHourlyDailyItem = AppHourlyDailyItem(dt: dt,
+                                                          temp: temp,
+                                                          pressure: pressure,
+                                                          humidity: humidity,
+                                                          wind_speed: wind_speed,
+                                                          weather: weather)
         return item
     }
     
