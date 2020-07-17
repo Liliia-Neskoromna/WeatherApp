@@ -20,22 +20,29 @@ class WeatherTableViewController: UITableViewController {
         }
     }
     @IBAction func addCity(_ sender: UIButton) {
-        //        let record = City(entity:
-        //            NSEntityDescription.entity(forEntityName: "City", in: persistence.context)!,
-        //                          insertInto: persistence.context)
         let entity = NSEntityDescription.insertNewObject(forEntityName: "City", into: context)
         let name = listOfWeather[0].name
         entity.setValue(name, forKey: "name")
+        let lon = listOfWeather[0].coord.lon
+        entity.setValue(lon, forKey: "longtitute")
+        let lat = listOfWeather[0].coord.lat
+        entity.setValue(lat, forKey: "latitude")
+        let temp = listOfWeather[0].main.temp
+        entity.setValue(temp, forKey: "temperature")
+        let humidity = listOfWeather[0].main.humidity
+        entity.setValue(humidity, forKey: "humidity")
+        let id = listOfWeather[0].id
+        entity.setValue(id, forKey: "cityId")
+        let speed = listOfWeather[0].wind.speed
+        entity.setValue(speed, forKey: "speed")
+        
         do {
             try persistence.context.save()
         } catch {
             print("error")
         }
         print(entity)
-        print("Object Saved")
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +54,6 @@ class WeatherTableViewController: UITableViewController {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         fetchRequest.returnsObjectsAsFaults = false
         citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
-        //print("citiesWeather = \(citiesWeather)")
         
         for cityWeather in citiesWeather {
             item.append(cityWeather)
@@ -66,7 +72,6 @@ class WeatherTableViewController: UITableViewController {
             return cell
         }
         
-        //        printCities()
         let request = CityRequest(cityName: searchBar.text!)
         request.getWeather{[weak self] result in
             switch result {
@@ -74,35 +79,9 @@ class WeatherTableViewController: UITableViewController {
                 print(error)
             case .success(let weather):
                 self?.listOfWeather = [weather]
-                //                self?.saveCity(weatherDetails: weather)
             }
         }
     }
-    //    func saveCity(weatherDetails: WeatherDetails) {
-    //        let city = City(context: self.persistence.context)
-    //        city.name = weatherDetails.name
-    //        city.cityId = weatherDetails.id
-    //        city.latitude = weatherDetails.coord.lat
-    //        city.longtitute = weatherDetails.coord.lon
-    //
-    //        DispatchQueue.main.async {
-    //            self.persistence.context.insert(city)
-    //            self.persistence.save()
-    //        }
-    //    }
-    //
-    //    func printCities()  {
-    //        do{
-    //            let cities = try readCity()
-    //            print(cities)
-    //        }catch{
-    //            print("ПУСТО")
-    //        }
-    //    }
-    //
-    //    func readCity()throws ->  [City] {
-    //        return try self.persistence.context.fetch(City.fetchRequest() as NSFetchRequest<City>)
-    //    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -164,7 +143,6 @@ extension Date {
     }
 }
 
-//     Optional (Basically, add an Optional extension that gives a String describing the thing in the optional, or simply “nil” if not set. In addition, if the thing in the optional is a String, put it in quotes)
 extension Optional {
     var orNil : String {
         if self == nil {

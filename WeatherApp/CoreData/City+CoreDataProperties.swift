@@ -11,5 +11,8 @@ extension City {
     @NSManaged public var cityId: Int64
     @NSManaged public var longtitute: Float
     @NSManaged public var latitude: Float
+    @NSManaged public var temperature: Float
+    @NSManaged public var humidity: Int
+    @NSManaged public var speed: Int
 
 }
