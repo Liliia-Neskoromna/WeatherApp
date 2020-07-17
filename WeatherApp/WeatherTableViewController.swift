@@ -3,19 +3,16 @@ import UIKit
 class WeatherTableViewController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     let kReUseId: String = "weatherTableViewCell"
-    //    let defaults = UserDefaults.standard
     var listOfWeather = [WeatherDetails]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                self.navigationItem.title = "\(self.listOfWeather.count) Holidays found"
+                self.navigationItem.title = "\(self.listOfWeather.count) city found"
             }
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        tableView.delegate = self
-        //        tableView.dataSource = self
         searchBar.delegate = self
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,36 +95,3 @@ extension UIImageView {
                 })
         }).resume()
     }}
-
-// MARK: - Flexible date (V2)
-
-//        let date = Date()
-//        let calendar = Calendar.current
-//        let components1 = calendar.dateComponents([.year,], from: date)
-//        let components2 = calendar.dateComponents([.month,], from: date)
-//        let components3 = calendar.dateComponents([.day,], from: date)
-//        let year = components1.year
-//        let month = components2.month
-//        let day = components3.day
-//        cell.dateLabel?.text = "\(day.orNil)" + "." + "\(month.orNil)" + "." + "\(year.orNil)"
-
-// MARK: - Constant data (V3)
-
-//        let date = Date()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = DateFormatter.Style.short
-//        cell.dateLabel?.text = dateFormatter.string(from: date)
-
-// MARK: - (зробила зміну шоб не було попередження тут: cell.dateLabel?.text = "\(day.orNil)")
-
-//extension Optional {
-//    var orNil : String {
-//        if self == nil {
-//            return "nil"
-//        }
-//        if "\(Wrapped.self)" == "String" {
-//            return "\"\(self!)\""
-//        }
-//        return "\(self!)"
-//    }
-//}
