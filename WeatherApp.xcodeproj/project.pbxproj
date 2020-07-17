@@ -78,12 +78,12 @@
 		223697DD2423A01B00DD2209 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				223697E42423A01B00DD2209 /* Main.storyboard */,
 				223697DE2423A01B00DD2209 /* AppDelegate.swift */,
 				223697E02423A01B00DD2209 /* SceneDelegate.swift */,
 				22949870244DE36F00373CB8 /* PersistenceService.swift */,
 				22E7E9302427BC0F0099E627 /* WeatherTableViewController.swift */,
 				22E7E9342427CB950099E627 /* WeatherTableViewCell.swift */,
+				223697E42423A01B00DD2209 /* Main.storyboard */,
 				2208A041244EFF8A0074B663 /* Request */,
 				22949877244DE99700373CB8 /* CoreData */,
 				223697FF2423D0B200DD2209 /* Model */,

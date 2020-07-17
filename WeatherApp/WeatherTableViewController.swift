@@ -2,15 +2,15 @@ import UIKit
 import CoreData
 
 class WeatherTableViewController: UITableViewController {
+    
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var addCity: UIButton!
     
     let kReUseIdentitfire: String = "weatherTableViewCell"
     let persistence = PersistanceService.shared
     let context = PersistanceService.shared.context
     var item : [City] = []
     var dic = NSMutableDictionary()
-    
-    // let entity = NSEntityDescription.entity(forEntityName: "City", in: )
     
     var listOfWeather = [WeatherDetails]() {
         didSet {
@@ -44,12 +44,13 @@ class WeatherTableViewController: UITableViewController {
         print(entity)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         var citiesWeather = [City]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         fetchRequest.returnsObjectsAsFaults = false
@@ -120,6 +121,7 @@ class WeatherTableViewController: UITableViewController {
         return cell
     }
 }
+
 // MARK: - Extension for searchBar
 extension WeatherTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
