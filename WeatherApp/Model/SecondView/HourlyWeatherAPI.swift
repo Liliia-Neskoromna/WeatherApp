@@ -44,7 +44,7 @@ struct HourlyWeatherAPI: Decodable, Hashable {
                                                           temp: temp,
                                                           pressure: pressure,
                                                           humidity: humidity,
-                                                          wind_speed: wind_speed,
+                                                          windSpeed: wind_speed,
                                                           weather: weather)
         return item
     }

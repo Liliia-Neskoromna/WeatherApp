@@ -13,7 +13,7 @@ struct AppHourlyDailyItem: Decodable, Hashable {
     var temp: AppTemperature
     var pressure: Int32
     var humidity: Int
-    var wind_speed: Float
+    var windSpeed: Float
     var weather: [AppWeather]
 }
 
