@@ -13,6 +13,6 @@ extension City {
     @NSManaged public var latitude: Float
     @NSManaged public var temperature: Float
     @NSManaged public var humidity: Int
-    @NSManaged public var speed: Int
+    @NSManaged public var speed: Float
 
 }

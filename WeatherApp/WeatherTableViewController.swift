@@ -10,7 +10,8 @@ class WeatherTableViewController: UITableViewController {
     let persistence = PersistanceService.shared
     let context = PersistanceService.shared.context
     var item : [City] = []
-    var dic = NSMutableDictionary()
+    var dict = NSMutableDictionary()
+    
     
     var listOfWeather = [WeatherDetails]() {
         didSet {
@@ -19,6 +20,7 @@ class WeatherTableViewController: UITableViewController {
             }
         }
     }
+    
     @IBAction func addCity(_ sender: UIButton) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "City", into: context)
         let name = listOfWeather[0].name
@@ -44,34 +46,42 @@ class WeatherTableViewController: UITableViewController {
         print(entity)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-
+        
+        
+        
         var citiesWeather = [City]()
+        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         fetchRequest.returnsObjectsAsFaults = false
         citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
         
-        for cityWeather in citiesWeather {
-            item.append(cityWeather)
-        }
+        let list = shoto(entity: citiesWeather)
+        print(citiesWeather)
+        listOfWeather = list
         
-        func numberOfSections(in tableView: UITableView) -> Int {
-            return 1
-        }
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return item.count
-        }
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as! WeatherTableViewCell
-            let dic = item[indexPath.row] as NSManagedObject
-            cell.cityLabel.text = dic.value(forKey: "name") as? String
-            return cell
-        }
+//        for cityWeather in citiesWeather {
+//            item.append(cityWeather)
+//        }
+        
+        print(item)
+        
+//        func numberOfSections(in tableView: UITableView) -> Int {
+//            return 1
+//        }
+//        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//            return item.count
+//        }
+//        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> WeatherTableViewCell {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as! WeatherTableViewCell
+//            let dict = item[indexPath.row] as NSManagedObject
+//            cell.cityLabel.text = dict.value(forKey: "name") as? String
+//            return cell
+//        }
         
         let request = CityRequest(cityName: searchBar.text!)
         request.getWeather{[weak self] result in
@@ -84,6 +94,36 @@ class WeatherTableViewController: UITableViewController {
         }
     }
     
+    
+    func shoto(entity: Array<City>) -> [WeatherDetails] {
+        
+        var list: [WeatherDetails] = []
+        
+        for looo in entity {
+                    
+            let newLat = looo.latitude
+            let newLon = looo.longtitute
+            let newId = looo.cityId
+            let newName = looo.name
+            let newHumidity = looo.humidity
+            let newTemp = looo.temperature
+            let newSpeed = looo.speed
+            
+            let weather = Weather(icon: " ", description: " ")
+            let main = Main(temp: newTemp, humidity: newHumidity)
+            let wind = Wind(speed: newSpeed)
+            let coord = Coordinates(lon: newLon, lat: newLat)
+            
+            
+            let element = WeatherDetails.init(main: main, wind: wind, id: newId, name: newName, weather: [weather], coord: coord)
+            list.append(element)
+            
+        }
+        print(list)
+        return list
+    }
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -95,6 +135,14 @@ class WeatherTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell else {fatalError("Bad Cell")}
+        
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for:
+        //        indexPath) as! CustomCell // CustomCell is your Cell File name
+        //        let dic = item[indexPath.row] as! NSManagedObject
+        //        cell.lbl_email?.text = dic.value(forKey: "email" ) as? String
+        //        cell.lbl_password?.text = dic.value(forKey: "password" ) as? String
+        //        return cell
+        
         let weather = listOfWeather[indexPath.row]
         // City
         let city = weather.name
