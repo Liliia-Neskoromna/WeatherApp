@@ -64,25 +64,6 @@ class WeatherTableViewController: UITableViewController {
         print(citiesWeather)
         listOfWeather = list
         
-//        for cityWeather in citiesWeather {
-//            item.append(cityWeather)
-//        }
-        
-        print(item)
-        
-//        func numberOfSections(in tableView: UITableView) -> Int {
-//            return 1
-//        }
-//        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//            return item.count
-//        }
-//        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> WeatherTableViewCell {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as! WeatherTableViewCell
-//            let dict = item[indexPath.row] as NSManagedObject
-//            cell.cityLabel.text = dict.value(forKey: "name") as? String
-//            return cell
-//        }
-        
         let request = CityRequest(cityName: searchBar.text!)
         request.getWeather{[weak self] result in
             switch result {
