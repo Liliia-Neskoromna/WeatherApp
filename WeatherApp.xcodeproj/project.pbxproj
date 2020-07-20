@@ -92,8 +92,9 @@
 				22793AD524333A90006AC71B /* CitySearchRequest.swift */,
 				22AFE62624B35B94005DC110 /* SavedCityWeatherRequest.swift */,
 				223697E42423A01B00DD2209 /* Main.storyboard */,
+				22C1137224B5CC110073AE47 /* MiniController */,
+				22C1137324B5CC280073AE47 /* MiniModel */,
 				223697FF2423D0B200DD2209 /* Model */,
-				22C1136924B5C2C90073AE47 /* MiniTest with my data */,
 				22C1137A24B5FD540073AE47 /* model.json */,
 				223697EA2423A01C00DD2209 /* Assets.xcassets */,
 				223697EC2423A01C00DD2209 /* LaunchScreen.storyboard */,
@@ -106,8 +107,11 @@
 		223697FF2423D0B200DD2209 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				22C1136724B492780073AE47 /* SecondView */,
-				22C1136624B492540073AE47 /* FIrstView */,
+				22AFE63124B36419005DC110 /* OneCallAPI.swift */,
+				22AFE62D24B3639B005DC110 /* HourlyWeatherAPI.swift */,
+				22AFE62F24B363A9005DC110 /* DailyWeatherAPI.swift */,
+				22AFE62424B35AC4005DC110 /* AppWeatherModel.swift */,
+				2265D9F9242923E700FF1346 /* WeatherModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,34 +123,6 @@
 				223BC8852437886600ACC1D9 /* SwiftLintFramework.framework.dSYM */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		22C1136624B492540073AE47 /* FIrstView */ = {
-			isa = PBXGroup;
-			children = (
-				2265D9F9242923E700FF1346 /* WeatherModel.swift */,
-			);
-			path = FIrstView;
-			sourceTree = "<group>";
-		};
-		22C1136724B492780073AE47 /* SecondView */ = {
-			isa = PBXGroup;
-			children = (
-				22AFE63124B36419005DC110 /* OneCallAPI.swift */,
-				22AFE62D24B3639B005DC110 /* HourlyWeatherAPI.swift */,
-				22AFE62F24B363A9005DC110 /* DailyWeatherAPI.swift */,
-				22AFE62424B35AC4005DC110 /* AppWeatherModel.swift */,
-			);
-			path = SecondView;
-			sourceTree = "<group>";
-		};
-		22C1136924B5C2C90073AE47 /* MiniTest with my data */ = {
-			isa = PBXGroup;
-			children = (
-				22C1137224B5CC110073AE47 /* MiniController */,
-				22C1137324B5CC280073AE47 /* MiniModel */,
-			);
-			path = "MiniTest with my data";
 			sourceTree = "<group>";
 		};
 		22C1137224B5CC110073AE47 /* MiniController */ = {

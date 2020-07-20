@@ -18,7 +18,6 @@ struct CityRequest {
     func getWeather(completion: @escaping(Result<WeatherDetails, CityError>) -> Void) {
 
         var resourceCityURL = URLRequest(url: urlresource, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
-//        resourceCityURL.httpMethod = "GET"
         resourceCityURL.addValue("community-open-weather-map.p.rapidapi.com",
                                  forHTTPHeaderField: "x-rapidapi-host")
         resourceCityURL.addValue("cff5b5b863msh86b854a51654b35p1f88edjsn8781cac08a86",

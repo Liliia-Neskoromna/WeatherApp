@@ -1,29 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G4032" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="MainParamsCD" representedClassName="MainParamsCD" syncable="YES">
-        <attribute name="airHumidity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="temparuture" optional="YES" attributeType="String"/>
-        <relationship name="weatherDetail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherDetailsCD" inverseName="withMainParams" inverseEntity="WeatherDetailsCD"/>
-    </entity>
-    <entity name="WeatherCD" representedClassName="WeatherCD" syncable="YES">
-        <attribute name="iconWeather" optional="YES" attributeType="String"/>
-        <relationship name="weatherDetail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherDetailsCD" inverseName="withWeather" inverseEntity="WeatherDetailsCD"/>
-    </entity>
-    <entity name="WeatherDetailsCD" representedClassName="WeatherDetailsCD" syncable="YES">
-        <attribute name="cityName" attributeType="String"/>
-        <attribute name="citysId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="withMainParams" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainParamsCD" inverseName="weatherDetail" inverseEntity="MainParamsCD"/>
-        <relationship name="withWeather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherCD" inverseName="weatherDetail" inverseEntity="WeatherCD"/>
-        <relationship name="withWind" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindDetailsCD" inverseName="weatherDetail" inverseEntity="WindDetailsCD"/>
-    </entity>
-    <entity name="WindDetailsCD" representedClassName="WindDetailsCD" syncable="YES">
-        <attribute name="windSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="weatherDetail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherDetailsCD" inverseName="withWind" inverseEntity="WeatherDetailsCD"/>
-    </entity>
-    <elements>
-        <element name="MainParamsCD" positionX="-36" positionY="36" width="128" height="88"/>
-        <element name="WeatherDetailsCD" positionX="-54" positionY="9" width="128" height="118"/>
-        <element name="WindDetailsCD" positionX="0" positionY="63" width="128" height="73"/>
-        <element name="WeatherCD" positionX="-27" positionY="54" width="128" height="73"/>
-    </elements>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <elements/>
 </model>

@@ -104,37 +104,5 @@ extension UIImageView {
                     self.image = image
                 })
         }).resume()
-    }}
-
-// MARK: - Flexible date (V2)
-
-//        let date = Date()
-//        let calendar = Calendar.current
-//        let components1 = calendar.dateComponents([.year,], from: date)
-//        let components2 = calendar.dateComponents([.month,], from: date)
-//        let components3 = calendar.dateComponents([.day,], from: date)
-//        let year = components1.year
-//        let month = components2.month
-//        let day = components3.day
-//        cell.dateLabel?.text = "\(day.orNil)" + "." + "\(month.orNil)" + "." + "\(year.orNil)"
-
-// MARK: - Constant data (V3)
-
-//        let date = Date()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = DateFormatter.Style.short
-//        cell.dateLabel?.text = dateFormatter.string(from: date)
-
-// MARK: - (зробила зміну шоб не було попередження тут: cell.dateLabel?.text = "\(day.orNil)")
-
-//extension Optional {
-//    var orNil : String {
-//        if self == nil {
-//            return "nil"
-//        }
-//        if "\(Wrapped.self)" == "String" {
-//            return "\"\(self!)\""
-//        }
-//        return "\(self!)"
-//    }
-//}
+    }
+}

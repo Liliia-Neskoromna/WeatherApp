@@ -9,7 +9,6 @@ struct WeatherDetails: Codable {
     var wind: Wind
     var name: String
     var weather: [Weather]
-//    var idCity: Int
 }
 
 struct Wind: Codable {
