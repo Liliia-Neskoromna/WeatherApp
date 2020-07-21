@@ -31,6 +31,7 @@
 		22CD3A1C24BDE63500CFD2E3 /* TestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CD3A1B24BDE63500CFD2E3 /* TestListViewController.swift */; };
 		22E7E9312427BC0F0099E627 /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7E9302427BC0F0099E627 /* WeatherTableViewController.swift */; };
 		22E7E9352427CB950099E627 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7E9342427CB950099E627 /* WeatherTableViewCell.swift */; };
+		22EF1A5124C71C51003734A3 /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF1A5024C71C51003734A3 /* PersistanceService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		22CD3A1B24BDE63500CFD2E3 /* TestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListViewController.swift; sourceTree = "<group>"; };
 		22E7E9302427BC0F0099E627 /* WeatherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewController.swift; sourceTree = "<group>"; };
 		22E7E9342427CB950099E627 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
+		22EF1A5024C71C51003734A3 /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -90,6 +92,7 @@
 				22E7E9302427BC0F0099E627 /* WeatherTableViewController.swift */,
 				22E7E9342427CB950099E627 /* WeatherTableViewCell.swift */,
 				22793AD524333A90006AC71B /* CitySearchRequest.swift */,
+				22EF1A5024C71C51003734A3 /* PersistanceService.swift */,
 				22AFE62624B35B94005DC110 /* SavedCityWeatherRequest.swift */,
 				223697E42423A01B00DD2209 /* Main.storyboard */,
 				22C1137224B5CC110073AE47 /* MiniController */,
@@ -259,6 +262,7 @@
 				22C1137724B5CD720073AE47 /* SectionHeader.swift in Sources */,
 				22E7E9312427BC0F0099E627 /* WeatherTableViewController.swift in Sources */,
 				22AFE63224B36419005DC110 /* OneCallAPI.swift in Sources */,
+				22EF1A5124C71C51003734A3 /* PersistanceService.swift in Sources */,
 				22AFE62524B35AC4005DC110 /* AppWeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
