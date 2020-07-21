@@ -81,14 +81,15 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Av-NZ-viG">
-                                            <rect key="frame" x="179" y="183" width="57" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzi-ca-cn2">
+                                            <rect key="frame" x="153" y="179" width="107" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="1" green="0.4431150552" blue="0.1212853314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Add city">
                                                 <color key="titleColor" red="0.97818309069999998" green="0.42282265419999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="addCity:" destination="152-Gs-6b5" eventType="touchUpInside" id="ozi-w7-VHw"/>
+                                                <action selector="addCityButton" destination="152-Gs-6b5" eventType="touchUpInside" id="Iiu-5j-0D3"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -96,7 +97,6 @@
                                 <color key="backgroundColor" red="0.39613525565494745" green="0.39613525565494745" blue="0.39613525565494745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <outlet property="addCity" destination="5Av-NZ-viG" id="4Fa-Kv-gGh"/>
                                     <outlet property="cityLabel" destination="8qe-3C-MFA" id="mp6-NR-YKb"/>
                                     <outlet property="dateLabel" destination="mSc-D0-DAF" id="zfR-ru-02A"/>
                                     <outlet property="imageWeatherIcon" destination="3Wb-qm-oh9" id="8Kw-Uz-c9l"/>

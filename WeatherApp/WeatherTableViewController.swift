@@ -1,19 +1,9 @@
 import UIKit
 
 class WeatherTableViewController: UITableViewController {
-    
     @IBOutlet weak var searchBar: UISearchBar!
-    
-        //=
-    let kReUseIdentitfire: String = "weatherTableViewCell"
-    let persistence = PersistanceService.shared
-    let context = PersistanceService.shared.context
-    var item : [City] = []
-    var dict = NSMutableDictionary()
-    //=
-    
+        
     let kReUseId: String = "weatherTableViewCell"
-    
     var listOfWeather = [WeatherDetails]() {
         didSet {
             DispatchQueue.main.async {
@@ -22,32 +12,6 @@ class WeatherTableViewController: UITableViewController {
             }
         }
     }
-    
-    @IBAction func addCity(_ sender: UIButton) {
-        let entity = NSEntityDescription.insertNewObject(forEntityName: "City", into: context)
-        let name = listOfWeather[0].name
-        entity.setValue(name, forKey: "name")
-        let lon = listOfWeather[0].coord.lon
-        entity.setValue(lon, forKey: "longtitute")
-        let lat = listOfWeather[0].coord.lat
-        entity.setValue(lat, forKey: "latitude")
-        let temp = listOfWeather[0].main.temp
-        entity.setValue(temp, forKey: "temperature")
-        let humidity = listOfWeather[0].main.humidity
-        entity.setValue(humidity, forKey: "humidity")
-        let id = listOfWeather[0].id
-        entity.setValue(id, forKey: "cityId")
-        let speed = listOfWeather[0].wind.speed
-        entity.setValue(speed, forKey: "speed")
-        
-        do {
-            try persistence.context.save()
-        } catch {
-            print("error")
-        }
-        print(entity)
-    }
-    
     
     let second = ListViewController()
     
