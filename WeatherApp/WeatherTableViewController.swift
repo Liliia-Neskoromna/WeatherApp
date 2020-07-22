@@ -10,6 +10,7 @@ class WeatherTableViewController: UITableViewController {
     let persistence = PersistanceService.shared
     let context = PersistanceService.shared.context
     var item : [City] = []
+    //let uniqueElementsArray = self.item.filterDuplicates { $0.recordID != $1.recordID }
     var dict = NSMutableDictionary()
     
     
@@ -47,7 +48,9 @@ class WeatherTableViewController: UITableViewController {
     }
     
     @IBAction func deleteCity(_ sender: UIButton) {
-        
+        //        item.remove(at: sender.tag)
+        //        //listOfWeather.removeAtIndex(sender.tag)
+        //        tableView.reloadData()
     }
     
     
@@ -56,8 +59,7 @@ class WeatherTableViewController: UITableViewController {
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        self.reloadData()
-        
+        reloadCoreData()
         
         //        var citiesWeather = [City]()
         
@@ -67,7 +69,7 @@ class WeatherTableViewController: UITableViewController {
         //        let list = shoto(entity: citiesWeather)
         //        //print(citiesWeather)
         //        listOfWeather = list
-        
+    
         
         let request = CityRequest(cityName: searchBar.text!)
         request.getWeather{[weak self] result in
@@ -80,11 +82,14 @@ class WeatherTableViewController: UITableViewController {
         }
     }
     
-    func reloadData() {
+    func reloadCoreData() {
         
         var citiesWeather = [City]()
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
+        let sort = NSSortDescriptor(key: "cityId", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
+        
         fetchRequest.returnsObjectsAsFaults = false
         citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
         let list = shoto(entity: citiesWeather)
@@ -111,12 +116,9 @@ class WeatherTableViewController: UITableViewController {
             let wind = Wind(speed: newSpeed)
             let coord = Coordinates(lon: newLon, lat: newLat)
             
-            
             let element = WeatherDetails.init(main: main, wind: wind, id: newId, name: newName, weather: [weather], coord: coord)
             list.append(element)
-            
         }
-        //print(list)
         return list
     }
     
@@ -133,14 +135,8 @@ class WeatherTableViewController: UITableViewController {
         
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell else {fatalError("Bad Cell")}
         
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for:
-        //        indexPath) as! CustomCell // CustomCell is your Cell File name
-        //        let dic = item[indexPath.row] as! NSManagedObject
-        //        cell.lbl_email?.text = dic.value(forKey: "email" ) as? String
-        //        cell.lbl_password?.text = dic.value(forKey: "password" ) as? String
-        //        return cell
-        
         let weather = listOfWeather[indexPath.row]
+        print(indexPath)
         // City
         let city = weather.name
         cell.cityLabel?.text = city
@@ -198,33 +194,70 @@ class WeatherTableViewController: UITableViewController {
     //        }
     //    }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: WeatherTableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
-    {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        //if item.count < indexPath.row {
+        var citiesWeather = [City]()
+        print(citiesWeather)
+        
+        let note = item[indexPath.row]
         
         if editingStyle == .delete {
-            let city = item[indexPath.row]
-            context.delete(city)
+            context.delete(note)
             
-            reloadData()
-            
-            //            do {
-            //                try context.save()
-            //            } catch let error as NSError {
-            //                print("Could not save. \(error), \(error.userInfo)")
-            //            }
-            //            tableView.beginUpdates()
-            //            item.remove(at: indexPath.row)
-            //            tableView.deleteRows(at: [indexPath], with: .fade)
-            //            tableView.endUpdates()
-            //            tableView.reloadData()
-            //            persistence.save()
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print("Error While Deleting Note: \(error.userInfo)")
+            }
         }
+        //item = item.filterDuplicates { $0.recordID != $1.recordID }
+        
+        //Code to Fetch New Data From The DB and Reload Table.
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:  "City")
+        fetchRequest.returnsObjectsAsFaults = false
+        let sort = NSSortDescriptor(key: "cityId", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
+        
+        do {
+            citiesWeather = try context.fetch(fetchRequest) as! [City]
+        } catch let error as NSError {
+            print("Error While Fetching Data From DB: \(error.userInfo)")
+        }
+        let list = shoto(entity: citiesWeather)
+        //print(citiesWeather)
+        listOfWeather = list
+        //
+        //        //} else {return print("Not delete")}
+        //    }
+        
+        //    override func tableView(_ tableView: UITableView, commit editingStyle: WeatherTableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+        //    {
+        //
+        //        if editingStyle == .delete {
+        //            let city = item[indexPath.row]
+        //            context.delete(city)
+        //
+        //            reloadData()
+        //                }
+        //            }
+        //            do {
+        //                try context.save()
+        //            } catch let error as NSError {
+        //                print("Could not save. \(error), \(error.userInfo)")
+        //            }
+        //            tableView.beginUpdates()
+        //            item.remove(at: indexPath.row)
+        //            tableView.deleteRows(at: [indexPath], with: .fade)
+        //            tableView.endUpdates()
+        //            tableView.reloadData()
+        //            persistence.save()
+        
+        
+        
+        //    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
+        //    {
     }
-    
-    
-    //    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
-    //    {
-    //    }
 }
 //let editAction = UITableViewRowAction(style: .default, title: "Edit",
 //handler: { (action, indexPath) in
@@ -332,3 +365,20 @@ extension UIImageView {
             
         }).resume()
     }}
+
+extension Array {
+    func filterDuplicates (includeElement: (_ lhs:Element, _ rhs:Element) -> Bool) -> [Element] {
+        var results = [Element]()
+        
+        forEach { element in
+            let existingElements = results.filter {
+                return includeElement(element, $0)
+            }
+            if existingElements.count == 0 {
+                results.append(element)
+            }
+        }
+        
+        return results
+    }
+}

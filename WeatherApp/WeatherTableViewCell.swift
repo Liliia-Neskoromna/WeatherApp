@@ -10,6 +10,5 @@ class WeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var imageWeatherIcon: UIImageView!
     @IBOutlet weak var testImage: UILabel!
     @IBOutlet weak var deleteCity: UIButton!
-    
-    
+
 }
