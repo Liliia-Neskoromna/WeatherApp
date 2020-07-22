@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UEM-Ub-d4C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UEM-Ub-d4C">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -81,7 +81,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ci-ES-zUE">
-                                            <rect key="frame" x="174" y="190" width="67" height="34"/>
+                                            <rect key="frame" x="144" y="180" width="67" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.39613525570000002" green="0.39613525570000002" blue="0.39613525570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Add city">
@@ -92,6 +92,16 @@
                                                 <action selector="addCity:" destination="152-Gs-6b5" eventType="touchUpInside" id="JKF-dT-3Ct"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJs-oh-s0z">
+                                            <rect key="frame" x="230" y="184" width="45" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Delete">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="deleteCity:" destination="152-Gs-6b5" eventType="touchUpInside" id="8Wa-MT-NmQ"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.39613525565494745" green="0.39613525565494745" blue="0.39613525565494745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -99,6 +109,7 @@
                                 <connections>
                                     <outlet property="cityLabel" destination="8qe-3C-MFA" id="mp6-NR-YKb"/>
                                     <outlet property="dateLabel" destination="mSc-D0-DAF" id="zfR-ru-02A"/>
+                                    <outlet property="deleteCity" destination="gJs-oh-s0z" id="ygB-7L-73c"/>
                                     <outlet property="imageWeatherIcon" destination="3Wb-qm-oh9" id="8Kw-Uz-c9l"/>
                                     <outlet property="rainLabel" destination="0ED-aS-pQo" id="kfa-Tt-4tk"/>
                                     <outlet property="tempLabel" destination="gaX-dP-8YC" id="aKm-5b-L7t"/>

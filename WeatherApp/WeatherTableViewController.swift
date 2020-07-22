@@ -43,26 +43,31 @@ class WeatherTableViewController: UITableViewController {
         } catch {
             print("error")
         }
-        print(entity)
+        //print(entity)
     }
+    
+    @IBAction func deleteCity(_ sender: UIButton) {
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        self.reloadData()
         
         
+        //        var citiesWeather = [City]()
         
-        var citiesWeather = [City]()
+        //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
+        //        fetchRequest.returnsObjectsAsFaults = false
+        //        citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
+        //        let list = shoto(entity: citiesWeather)
+        //        //print(citiesWeather)
+        //        listOfWeather = list
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
-        fetchRequest.returnsObjectsAsFaults = false
-        citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
-        
-        let list = shoto(entity: citiesWeather)
-        print(citiesWeather)
-        listOfWeather = list
         
         let request = CityRequest(cityName: searchBar.text!)
         request.getWeather{[weak self] result in
@@ -75,13 +80,24 @@ class WeatherTableViewController: UITableViewController {
         }
     }
     
+    func reloadData() {
+        
+        var citiesWeather = [City]()
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
+        fetchRequest.returnsObjectsAsFaults = false
+        citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
+        let list = shoto(entity: citiesWeather)
+        //print(citiesWeather)
+        listOfWeather = list
+    }
     
     func shoto(entity: Array<City>) -> [WeatherDetails] {
         
         var list: [WeatherDetails] = []
         
         for looo in entity {
-                    
+            
             let newLat = looo.latitude
             let newLon = looo.longtitute
             let newId = looo.cityId
@@ -100,7 +116,7 @@ class WeatherTableViewController: UITableViewController {
             list.append(element)
             
         }
-        print(list)
+        //print(list)
         return list
     }
     
@@ -149,7 +165,112 @@ class WeatherTableViewController: UITableViewController {
         cell.dateLabel?.text = formate
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    //
+    //        let deleteItem = item[indexPath.row]
+    //        print(deleteItem)
+    //
+    //        if editingStyle == .delete {
+    //            context.delete(deleteItem)
+    //            do {
+    //                try context.save()
+    //                tableView.reloadData()
+    //            } catch let error as NSError {
+    //                print("Could not save. \(error), \(error.userInfo)")
+    //            }
+    //        }
+    //        self.loadSaveData()
+    //    }
+    //
+    //    func loadSaveData()  {
+    //        let cityRequest: NSFetchRequest<City> = City.fetchRequest()
+    //        do{
+    //            item = try context.fetch(cityRequest)
+    //            self.tableView.reloadData()
+    //        }catch
+    //        {
+    //            print("Could not load save data: \(error.localizedDescription)")
+    //        }
+    //    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: WeatherTableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        
+        if editingStyle == .delete {
+            let city = item[indexPath.row]
+            context.delete(city)
+            
+            reloadData()
+            
+            //            do {
+            //                try context.save()
+            //            } catch let error as NSError {
+            //                print("Could not save. \(error), \(error.userInfo)")
+            //            }
+            //            tableView.beginUpdates()
+            //            item.remove(at: indexPath.row)
+            //            tableView.deleteRows(at: [indexPath], with: .fade)
+            //            tableView.endUpdates()
+            //            tableView.reloadData()
+            //            persistence.save()
+        }
+    }
+    
+    
+    //    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
+    //    {
+    //    }
 }
+//let editAction = UITableViewRowAction(style: .default, title: "Edit",
+//handler: { (action, indexPath) in
+//let updatevc = self.storyboard?.instantiateViewController(withIdentifier:
+//"UpdatenaVC") as! UpdateVC
+//let temp = self.item[indexPath.row] as! NSManagedObject
+//getrecord = temp
+//self.navigationController?.pushViewController(updatevc, animated: true)
+//})
+//
+//let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
+//let temp = self.item[indexPath.row] as! NSManagedObject
+//let userNAME = temp.value(forKey: "email")
+//let context = self.appdelegate.persistentContainer.viewContext
+//let entitydec = NSEntityDescription.entity(forEntityName: "Login", in:
+//context)
+//let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Login")
+//request.entity = entitydec
+//let pred = NSPredicate(format: "email = %@", userNAME as! CVarArg)
+//request.predicate = pred
+//do
+//{
+//let result = try context.fetch(request)
+//if result.count > 0
+//{
+//let manage = result[0] as! NSManagedObject
+//context.delete(manage)
+//try context.save()
+//print("Record Deleted")
+//}
+//else
+//{
+//print("Record Not Found")
+//}
+//}
+//catch {}
+//self.item.remove(at: indexPath.row)
+//self.tbl_reload.deleteRows(at: [indexPath], with: .middle)
+//self.tbl_reload.reloadData()
+//
+//})
+//
+//return [deleteAction, editAction]
+//}
+
+
 
 // MARK: - Extension for searchBar
 extension WeatherTableViewController: UISearchBarDelegate {
