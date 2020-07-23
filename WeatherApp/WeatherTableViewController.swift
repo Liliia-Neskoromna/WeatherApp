@@ -9,7 +9,7 @@ class WeatherTableViewController: UITableViewController {
     let kReUseIdentitfire: String = "weatherTableViewCell"
     let persistence = PersistanceService.shared
     let context = PersistanceService.shared.context
-    var item : [City] = []
+    var coreDataCityes : [City] = []
     //let uniqueElementsArray = self.item.filterDuplicates { $0.recordID != $1.recordID }
     var dict = NSMutableDictionary()
     
@@ -92,6 +92,7 @@ class WeatherTableViewController: UITableViewController {
         
         fetchRequest.returnsObjectsAsFaults = false
         citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
+        coreDataCityes = citiesWeather
         let list = shoto(entity: citiesWeather)
         //print(citiesWeather)
         listOfWeather = list
@@ -165,34 +166,7 @@ class WeatherTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    //
-    //        let deleteItem = item[indexPath.row]
-    //        print(deleteItem)
-    //
-    //        if editingStyle == .delete {
-    //            context.delete(deleteItem)
-    //            do {
-    //                try context.save()
-    //                tableView.reloadData()
-    //            } catch let error as NSError {
-    //                print("Could not save. \(error), \(error.userInfo)")
-    //            }
-    //        }
-    //        self.loadSaveData()
-    //    }
-    //
-    //    func loadSaveData()  {
-    //        let cityRequest: NSFetchRequest<City> = City.fetchRequest()
-    //        do{
-    //            item = try context.fetch(cityRequest)
-    //            self.tableView.reloadData()
-    //        }catch
-    //        {
-    //            print("Could not load save data: \(error.localizedDescription)")
-    //        }
-    //    }
+
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
@@ -200,7 +174,7 @@ class WeatherTableViewController: UITableViewController {
         var citiesWeather = [City]()
         print(citiesWeather)
         
-        let note = item[indexPath.row]
+        let note = coreDataCityes[indexPath.row]
         
         if editingStyle == .delete {
             context.delete(note)
