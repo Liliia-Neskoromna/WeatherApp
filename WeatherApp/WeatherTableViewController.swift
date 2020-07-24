@@ -15,27 +15,13 @@ class WeatherTableViewController: UITableViewController {
     var dict = NSMutableDictionary()
     
     var listOfWeather = [WeatherDetails]()
-    
-    //    {
-    //        didSet {
-    //            DispatchQueue.main.async {
-    //                self.tableView.reloadData()
-    //            }
-    //        }
-    //    }
-    
-    //    @IBAction func updateCity(_ sender: UIButton) {
-    //
-    //        let cityUpdateRequest = UpdateWeatherRequest()
-    //        cityUpdateRequest.getWeather{[weak self] result in
-    //            switch result {
-    //            case .failure(let error):
-    //                print(error)
-    //            case .success(let weather):
-    //                self?.listOfWeather = weather
-    //            }
-    //        }
-    //    }
+        {
+            didSet {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     
     @IBAction func addCity(_ sender: UIButton) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "City", into: context)
@@ -65,8 +51,6 @@ class WeatherTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        //tableView.delegate = self
-        //tableView.dataSource = self
         reloadCoreData()
         
         //city.update(with: [WeatherDetails : Any])
@@ -85,9 +69,6 @@ class WeatherTableViewController: UITableViewController {
                 print(error)
             case .success(let weather):
                 self?.listOfWeather = [weather]
-                DispatchQueue.main.async {
-                    self?.reloadTableViewData()
-                }
             }
         }
         
@@ -119,12 +100,7 @@ class WeatherTableViewController: UITableViewController {
     //
     //        }
     //    }
-    
-    func reloadTableViewData() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
+
     
     func reloadCoreData() {
         
@@ -146,7 +122,6 @@ class WeatherTableViewController: UITableViewController {
     func shoto(entity: Array<City>) -> [WeatherDetails] {
         
         var list: [WeatherDetails] = []
-        
         for looo in entity {
             
             let newLat = looo.latitude
@@ -245,9 +220,9 @@ class WeatherTableViewController: UITableViewController {
         let list = shoto(entity: citiesWeather)
         //print(citiesWeather)
         listOfWeather = list
-        
     }
 }
+
 // MARK: - Extension for searchBar
 extension WeatherTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
