@@ -10,6 +10,7 @@ class WeatherTableViewController: UITableViewController {
     let persistence = PersistanceService.shared
     let context = PersistanceService.shared.context
     var coreDataCityes : [City] = []
+    var city = City()
     //let uniqueElementsArray = self.item.filterDuplicates { $0.recordID != $1.recordID }
     var dict = NSMutableDictionary()
     
@@ -21,6 +22,12 @@ class WeatherTableViewController: UITableViewController {
             }
         }
     }
+    @IBAction func updateCity(_ sender: UIButton) {
+    
+
+    }
+    
+    
     
     @IBAction func addCity(_ sender: UIButton) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "City", into: context)
@@ -47,12 +54,6 @@ class WeatherTableViewController: UITableViewController {
         //print(entity)
     }
     
-    @IBAction func deleteCity(_ sender: UIButton) {
-        //        item.remove(at: sender.tag)
-        //        //listOfWeather.removeAtIndex(sender.tag)
-        //        tableView.reloadData()
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,7 @@ class WeatherTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         reloadCoreData()
+        //city.update(with: [WeatherDetails : Any])
         
         //        var citiesWeather = [City]()
         
@@ -69,7 +71,7 @@ class WeatherTableViewController: UITableViewController {
         //        let list = shoto(entity: citiesWeather)
         //        //print(citiesWeather)
         //        listOfWeather = list
-    
+        
         
         let request = CityRequest(cityName: searchBar.text!)
         request.getWeather{[weak self] result in
@@ -93,6 +95,7 @@ class WeatherTableViewController: UITableViewController {
         fetchRequest.returnsObjectsAsFaults = false
         citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
         coreDataCityes = citiesWeather
+        print(coreDataCityes)
         let list = shoto(entity: citiesWeather)
         //print(citiesWeather)
         listOfWeather = list
@@ -137,7 +140,6 @@ class WeatherTableViewController: UITableViewController {
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell else {fatalError("Bad Cell")}
         
         let weather = listOfWeather[indexPath.row]
-        print(indexPath)
         // City
         let city = weather.name
         cell.cityLabel?.text = city
@@ -166,7 +168,7 @@ class WeatherTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
+    
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         

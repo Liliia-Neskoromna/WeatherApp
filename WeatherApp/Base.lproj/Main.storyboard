@@ -102,6 +102,14 @@
                                                 <action selector="deleteCity:" destination="152-Gs-6b5" eventType="touchUpInside" id="8Wa-MT-NmQ"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ot0-Hc-C4I">
+                                            <rect key="frame" x="35" y="55" width="51" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Update"/>
+                                            <connections>
+                                                <action selector="updateCity:" destination="152-Gs-6b5" eventType="touchUpInside" id="gGF-uC-hA8"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.39613525565494745" green="0.39613525565494745" blue="0.39613525565494745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

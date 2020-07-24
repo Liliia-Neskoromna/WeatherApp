@@ -14,5 +14,6 @@ extension City {
     @NSManaged public var temperature: Float
     @NSManaged public var humidity: Int
     @NSManaged public var speed: Float
-
+    @NSManaged public var icon: String
+    
 }
