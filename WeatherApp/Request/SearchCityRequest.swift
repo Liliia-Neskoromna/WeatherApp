@@ -30,7 +30,6 @@ struct CityRequest {
             do {
                 let decoder = JSONDecoder()
                 let weatherResponse = try decoder.decode(WeatherDetails.self, from: jsonData)
-                //print(weatherResponse)
                 let weatherDetails = weatherResponse
                 completion(.success(weatherDetails))
             } catch {

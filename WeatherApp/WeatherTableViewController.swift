@@ -22,12 +22,19 @@ class WeatherTableViewController: UITableViewController {
             }
         }
     }
+    
     @IBAction func updateCity(_ sender: UIButton) {
-    
-
+        
+        let cityUpdateRequest = UpdateWeatherRequest()
+        cityUpdateRequest.getWeather{[weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let weather):
+                self?.listOfWeather = weather
+            }
+        }
     }
-    
-    
     
     @IBAction func addCity(_ sender: UIButton) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "City", into: context)
@@ -61,6 +68,7 @@ class WeatherTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         reloadCoreData()
+       
         //city.update(with: [WeatherDetails : Any])
         
         //        var citiesWeather = [City]()
@@ -82,7 +90,35 @@ class WeatherTableViewController: UITableViewController {
                 self?.listOfWeather = [weather]
             }
         }
+        
+        //        print("reloading...")
+        //        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        //           if let data = data {
+        //              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] ?? [:]
+        //              print("json", json)
+        //              DispatchQueue.main.async {
+        //                 self.coreDataCityes.remove(at: indexPath.row)
+        //                 tableView.deleteRows(at: [indexPath], with: .fade)
+        //                 self.performSegue(withIdentifier: "GarageToHome", sender: self)
+        //              }
+        //           }
+        //        }.resume()
+        
+        
     }
+    
+    //    override func viewWillAppear(_ animated: Bool) {
+    //
+    //        let request = UpdateWeatherRequest(cityName: searchBar.text!)
+    //        request.getWeather{[weak self] result in
+    //            switch result {
+    //            case .failure(let error):
+    //                print(error)
+    //            case .success(let weather):
+    //                self?.listOfWeather = weather
+    //
+    //        }
+    //    }
     
     func reloadCoreData() {
         
@@ -95,7 +131,7 @@ class WeatherTableViewController: UITableViewController {
         fetchRequest.returnsObjectsAsFaults = false
         citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
         coreDataCityes = citiesWeather
-        print(coreDataCityes)
+        //print(coreDataCityes)
         let list = shoto(entity: citiesWeather)
         //print(citiesWeather)
         listOfWeather = list
