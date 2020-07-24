@@ -239,84 +239,9 @@ class WeatherTableViewController: UITableViewController {
         let list = shoto(entity: citiesWeather)
         //print(citiesWeather)
         listOfWeather = list
-        //
-        //        //} else {return print("Not delete")}
-        //    }
-        
-        //    override func tableView(_ tableView: UITableView, commit editingStyle: WeatherTableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
-        //    {
-        //
-        //        if editingStyle == .delete {
-        //            let city = item[indexPath.row]
-        //            context.delete(city)
-        //
-        //            reloadData()
-        //                }
-        //            }
-        //            do {
-        //                try context.save()
-        //            } catch let error as NSError {
-        //                print("Could not save. \(error), \(error.userInfo)")
-        //            }
-        //            tableView.beginUpdates()
-        //            item.remove(at: indexPath.row)
-        //            tableView.deleteRows(at: [indexPath], with: .fade)
-        //            tableView.endUpdates()
-        //            tableView.reloadData()
-        //            persistence.save()
-        
-        
-        
-        //    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
-        //    {
+
     }
 }
-//let editAction = UITableViewRowAction(style: .default, title: "Edit",
-//handler: { (action, indexPath) in
-//let updatevc = self.storyboard?.instantiateViewController(withIdentifier:
-//"UpdatenaVC") as! UpdateVC
-//let temp = self.item[indexPath.row] as! NSManagedObject
-//getrecord = temp
-//self.navigationController?.pushViewController(updatevc, animated: true)
-//})
-//
-//let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
-//let temp = self.item[indexPath.row] as! NSManagedObject
-//let userNAME = temp.value(forKey: "email")
-//let context = self.appdelegate.persistentContainer.viewContext
-//let entitydec = NSEntityDescription.entity(forEntityName: "Login", in:
-//context)
-//let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Login")
-//request.entity = entitydec
-//let pred = NSPredicate(format: "email = %@", userNAME as! CVarArg)
-//request.predicate = pred
-//do
-//{
-//let result = try context.fetch(request)
-//if result.count > 0
-//{
-//let manage = result[0] as! NSManagedObject
-//context.delete(manage)
-//try context.save()
-//print("Record Deleted")
-//}
-//else
-//{
-//print("Record Not Found")
-//}
-//}
-//catch {}
-//self.item.remove(at: indexPath.row)
-//self.tbl_reload.deleteRows(at: [indexPath], with: .middle)
-//self.tbl_reload.reloadData()
-//
-//})
-//
-//return [deleteAction, editAction]
-//}
-
-
-
 // MARK: - Extension for searchBar
 extension WeatherTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
