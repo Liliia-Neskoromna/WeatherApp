@@ -86,7 +86,7 @@ class WeatherTableViewController: UITableViewController {
             case .success(let weather):
                 self?.listOfWeather = [weather]
                 DispatchQueue.main.async {
-                    self?.tableView.reloadData()
+                    self?.reloadTableViewData()
                 }
             }
         }
@@ -119,6 +119,12 @@ class WeatherTableViewController: UITableViewController {
     //
     //        }
     //    }
+    
+    func reloadTableViewData() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
     
     func reloadCoreData() {
         
