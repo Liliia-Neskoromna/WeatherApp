@@ -14,27 +14,28 @@ class WeatherTableViewController: UITableViewController {
     //let uniqueElementsArray = self.item.filterDuplicates { $0.recordID != $1.recordID }
     var dict = NSMutableDictionary()
     
+    var listOfWeather = [WeatherDetails]()
     
-    var listOfWeather = [WeatherDetails]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+    //    {
+    //        didSet {
+    //            DispatchQueue.main.async {
+    //                self.tableView.reloadData()
+    //            }
+    //        }
+    //    }
     
-    @IBAction func updateCity(_ sender: UIButton) {
-        
-        let cityUpdateRequest = UpdateWeatherRequest()
-        cityUpdateRequest.getWeather{[weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let weather):
-                self?.listOfWeather = weather
-            }
-        }
-    }
+    //    @IBAction func updateCity(_ sender: UIButton) {
+    //
+    //        let cityUpdateRequest = UpdateWeatherRequest()
+    //        cityUpdateRequest.getWeather{[weak self] result in
+    //            switch result {
+    //            case .failure(let error):
+    //                print(error)
+    //            case .success(let weather):
+    //                self?.listOfWeather = weather
+    //            }
+    //        }
+    //    }
     
     @IBAction func addCity(_ sender: UIButton) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "City", into: context)
@@ -61,25 +62,21 @@ class WeatherTableViewController: UITableViewController {
         //print(entity)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
+        //tableView.delegate = self
+        //tableView.dataSource = self
         reloadCoreData()
-       
+        
         //city.update(with: [WeatherDetails : Any])
-        
         //        var citiesWeather = [City]()
-        
         //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         //        fetchRequest.returnsObjectsAsFaults = false
         //        citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
         //        let list = shoto(entity: citiesWeather)
         //        //print(citiesWeather)
         //        listOfWeather = list
-        
         
         let request = CityRequest(cityName: searchBar.text!)
         request.getWeather{[weak self] result in
@@ -88,6 +85,9 @@ class WeatherTableViewController: UITableViewController {
                 print(error)
             case .success(let weather):
                 self?.listOfWeather = [weather]
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
             }
         }
         
@@ -239,7 +239,7 @@ class WeatherTableViewController: UITableViewController {
         let list = shoto(entity: citiesWeather)
         //print(citiesWeather)
         listOfWeather = list
-
+        
     }
 }
 // MARK: - Extension for searchBar
