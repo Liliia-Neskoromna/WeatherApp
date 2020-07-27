@@ -51,6 +51,8 @@ class SearchCityController: UITableViewController {
         entity.setValue(id, forKey: "cityId")
         let speed = listOfWeather[0].wind.speed
         entity.setValue(speed, forKey: "speed")
+        let icon = listOfWeather[0].weather[0].icon
+        entity.setValue(icon, forKey: "icon")
         
         do {
             try context.save()

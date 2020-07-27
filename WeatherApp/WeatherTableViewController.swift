@@ -24,7 +24,7 @@ class WeatherTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadCoreData()
-        
+       
         
         //city.update(with: [WeatherDetails : Any])
         //        var citiesWeather = [City]()
@@ -70,17 +70,18 @@ class WeatherTableViewController: UITableViewController {
     func shoto(entity: Array<City>) -> [WeatherDetails] {
         
         var list: [WeatherDetails] = []
-        for looo in entity {
+        for element in entity {
             
-            let newLat = looo.latitude
-            let newLon = looo.longtitute
-            let newId = looo.cityId
-            let newName = looo.name
-            let newHumidity = looo.humidity
-            let newTemp = looo.temperature
-            let newSpeed = looo.speed
+            let newLat = element.latitude
+            let newLon = element.longtitute
+            let newId = element.cityId
+            let newName = element.name
+            let newHumidity = element.humidity
+            let newTemp = element.temperature
+            let newSpeed = element.speed
+            let newIcon = element.icon
             
-            let weather = Weather(icon: " ", description: " ")
+            let weather = Weather(icon: newIcon, description: " ")
             let main = Main(temp: newTemp, humidity: newHumidity)
             let wind = Wind(speed: newSpeed)
             let coord = Coordinates(lon: newLon, lat: newLat)
@@ -102,6 +103,8 @@ class WeatherTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell else {fatalError("Bad Cell")}
+//        cell.layer.borderColor = CGColor(genericGrayGamma2_2Gray: 45, alpha: 1)
+//        cell.layer.borderWidth = 2.0
         
         let weather = listOfWeather[indexPath.row]
         // City
@@ -110,7 +113,7 @@ class WeatherTableViewController: UITableViewController {
         // Temp
         let temp: Float = weather.main.temp
         let roundTemp = temp.rounded()
-        let t = roundTemp.shortValue + " °C"
+        let t = roundTemp.shortValue
         cell.tempLabel?.text = t
         // Wind
         let wind: String = "\(weather.wind.speed)" + "  m/s"
