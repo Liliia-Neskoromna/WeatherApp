@@ -11,9 +11,7 @@ class WeatherTableViewController: UITableViewController {
     var coreDataCityes : [City] = []
     var city = City()
     var dict = NSMutableDictionary()
-    
-    //let requestController = RequestController()
-    
+        
     var listOfWeather = [WeatherDetails]()
         {
             didSet {
@@ -25,7 +23,6 @@ class WeatherTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //searchBar.delegate = self
         reloadCoreData()
         
         
