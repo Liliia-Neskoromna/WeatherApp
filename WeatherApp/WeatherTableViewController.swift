@@ -5,6 +5,8 @@ class WeatherTableViewController: UITableViewController {
     
     @IBOutlet weak var addCity: UIButton!
     
+    let requestController = RequestController.shared
+    
     let kReUseIdentitfire: String = "weatherTableViewCell"
     let persistence = PersistanceService.shared
     let context = PersistanceService.shared.context
@@ -24,7 +26,25 @@ class WeatherTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadCoreData()
+        //requestController.viewDidLoad()
        
+        let request = UpdateWeatherRequest()
+        request.getWeather{[weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let weather):
+                self?.listOfWeather = weather
+                print(weather)
+            }
+        }
+        
+        let citiesWeather = [City]()
+        city = citiesWeather[0]
+        
+        let list = shoto(entity: citiesWeather)
+        //print(citiesWeather)
+        listOfWeather = list
         
         //city.update(with: [WeatherDetails : Any])
         //        var citiesWeather = [City]()
@@ -45,7 +65,6 @@ class WeatherTableViewController: UITableViewController {
 //            }
 //        }
 //
-        //requestController.reloadCoreData()
     
         
     }
@@ -102,9 +121,8 @@ class WeatherTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell else {fatalError("Bad Cell")}
-//        cell.layer.borderColor = CGColor(genericGrayGamma2_2Gray: 45, alpha: 1)
-//        cell.layer.borderWidth = 2.0
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: kReUseIdentitfire, for: indexPath) as? WeatherTableViewCell
+            else {fatalError("Bad Cell")}
         
         let weather = listOfWeather[indexPath.row]
         // City
@@ -116,10 +134,10 @@ class WeatherTableViewController: UITableViewController {
         let t = roundTemp.shortValue
         cell.tempLabel?.text = t
         // Wind
-        let wind: String = "\(weather.wind.speed)" + "  m/s"
+        let wind: String = "\(weather.wind.speed)" + "m/s"
         cell.windLabel?.text = wind
         // Humidity
-        let rain = "\(weather.main.humidity)" + " %"
+        let rain = "\(weather.main.humidity)" + "%"
         cell.rainLabel?.text = rain
         // Icon
         let icon = weather.weather[0].icon
@@ -136,10 +154,8 @@ class WeatherTableViewController: UITableViewController {
         return true
     }
     
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        //if item.count < indexPath.row {
         var citiesWeather = [City]()
         print(citiesWeather)
         
@@ -154,7 +170,6 @@ class WeatherTableViewController: UITableViewController {
                 print("Error While Deleting Note: \(error.userInfo)")
             }
         }
-        //item = item.filterDuplicates { $0.recordID != $1.recordID }
         
         //Code to Fetch New Data From The DB and Reload Table.
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:  "City")
@@ -171,82 +186,5 @@ class WeatherTableViewController: UITableViewController {
         //print(citiesWeather)
         listOfWeather = list
     }
+    
 }
-
-//// MARK: - Extension for searchBar
-//extension WeatherTableViewController: UISearchBarDelegate {
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        guard let searchBarText = searchBar.text else {return}
-//        let weatherRequest = CityRequest(cityName: searchBarText)
-//        weatherRequest.getWeather { [weak self] result in
-//            switch result {
-//            case .failure(let error):
-//                print(error)
-//            case .success(let weather):
-//                self?.listOfWeather = [weather]
-//            }
-//        }
-//    }
-//}
-//extension Date {
-//    static func getFormattedDate(date: Date, format: String) -> String {
-//        let dateformat = DateFormatter()
-//        dateformat.dateFormat = format
-//        return dateformat.string(from: date)
-//    }
-//}
-//
-//extension Optional {
-//    var orNil : String {
-//        if self == nil {
-//            return "nil"
-//        }
-//        if "\(Wrapped.self)" == "String" {
-//            return "\"\(self!)\""
-//        }
-//        return "\(self!)"
-//    }
-//}
-//
-////    Extension for Float
-//extension Float {
-//    var shortValue: String {
-//        return String(format: "%g", self)
-//    }
-//}
-//
-////    Extension for Icon
-//extension UIImageView {
-//    public func imageFromServerURL(urlString: String) {
-//        self.image = nil
-//        let urlStringNew = urlString.replacingOccurrences(of: " ", with: "%20")
-//        URLSession.shared.dataTask(with: NSURL(string: urlStringNew)! as URL, completionHandler: { (data, response, error) -> Void in
-//
-//            if error != nil {
-//                print(error as Any)
-//                return
-//            }
-//            DispatchQueue.main.async(execute: { () -> Void in
-//                let image = UIImage(data: data!)
-//                self.image = image
-//            })
-//
-//        }).resume()
-//    }}
-//
-//extension Array {
-//    func filterDuplicates (includeElement: (_ lhs:Element, _ rhs:Element) -> Bool) -> [Element] {
-//        var results = [Element]()
-//
-//        forEach { element in
-//            let existingElements = results.filter {
-//                return includeElement(element, $0)
-//            }
-//            if existingElements.count == 0 {
-//                results.append(element)
-//            }
-//        }
-//
-//        return results
-//    }
-//}

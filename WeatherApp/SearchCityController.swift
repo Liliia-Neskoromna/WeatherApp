@@ -80,13 +80,13 @@ class SearchCityController: UITableViewController {
         // Temp
         let temp: Float = weather.main.temp
         let roundTemp = temp.rounded()
-        let t = roundTemp.shortValue + " °C"
+        let t = roundTemp.shortValue
         cell.tempLabel?.text = t
         // Wind
-        let wind: String = "\(weather.wind.speed)" + "  m/s"
+        let wind: String = "\(weather.wind.speed)" + "m/s"
         cell.windLabel?.text = wind
         // Humidity
-        let rain = "\(weather.main.humidity)" + " %"
+        let rain = "\(weather.main.humidity)" + "%"
         cell.humidityLabel?.text = rain
         // Icon
         let icon = weather.weather[0].icon
