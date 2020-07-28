@@ -14,6 +14,13 @@ struct UpdateWeatherRequest {
     let requestController = RequestController.shared
     init () {
         let cityId = requestController.propertiesToFetch()
+//        var array = [Int]()
+//
+//        for element in 0...cityId {
+//            let cityId = element
+//            array.append(Int(cityId))
+//        }
+        
         print("Достали сіті ІД - \(cityId)")
 
         let resourceString = "https://api.openweathermap.org/data/2.5/group?id=\(cityId)&units=metric&APPID=\(API_KEY)"

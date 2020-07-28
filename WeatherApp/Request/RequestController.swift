@@ -9,7 +9,7 @@ class RequestController: UIViewController {
     let persistence = PersistanceService.shared
     let context = PersistanceService.shared.context
     var coreDataCityes : [City] = []
-    //var city = City()
+    var city = City()
     var dict = NSMutableDictionary()
     //var tableViewController = WeatherTableViewController()
     
@@ -71,26 +71,50 @@ class RequestController: UIViewController {
     //        listOfCityWeather = list
     //    }
     //
-    func propertiesToFetch() {
-        var arrayCityID = Array<Int>()
+    func propertiesToFetch() -> [Int] {
+        //var arrayCityID = Array<Int>()
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         fetchRequest.returnsObjectsAsFaults = false
         
         fetchRequest.propertiesToFetch = ["cityId"]
         fetchRequest.resultType = .dictionaryResultType
+        let nudeCityID = Int()
+        
+        
+        var arraynudeCityID = [City]()
+        var newArray = [Int]()
+        
+        let idArray = arraynudeCityID.map({ (city: City) -> Int in
+            city.cityId
+        })
+        print(idArray)
         
         do {
             let cities = try persistence.context.fetch(fetchRequest)
-            for city in cities {
-                var finalarrayCityID = arrayCityID.append(city) as? Int
-                print("Object cityID return \(city)")
-            }
+            for nudeCityID in 0...cities.count {
+                
+                //var finalarrayCityID = arrayCityID.append(city) as? Int
+                //print("Object cityID return \(nudeCityID)")
+                newArray.append(idArray)            }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo) ")
         }
-        //return finalarrayCityID
-    }
+        print("city - \(newArray)")
+
+        return newArray
+            }
+    
+//    func mapCityTOArray() -> [Int] {
+//        var arrayCityID = [Int]()
+//        let cityIdFromCity = self.propertiesToFetch().cityId
+//        
+//        for element in 0...cityIdFromCity {
+//            let cityId = element
+//            arrayCityID.append(Int(cityId))
+//        }
+//        return arrayCityID
+//    }
     
     //    func getUpdateCityWeather() {
     //
