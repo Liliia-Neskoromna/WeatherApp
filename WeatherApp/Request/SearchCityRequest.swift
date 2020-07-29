@@ -11,7 +11,6 @@ struct CityRequest {
     init (cityName: String) {
         let resourceString = "https://community-open-weather-map.p.rapidapi.com/weather?q=\(cityName)&units=metric"
         guard let urlresource = URL(string: resourceString) else { fatalError() }
-
         self.urlresource = urlresource
     }
 

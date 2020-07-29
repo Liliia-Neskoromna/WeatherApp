@@ -1,7 +1,7 @@
 import Foundation
 
 struct WeatherResponse: Codable, Hashable {
-    var list: WeatherDetails
+    var list: [WeatherDetails]
 }
 struct WeatherDetails: Codable, Hashable {
     var main: Main

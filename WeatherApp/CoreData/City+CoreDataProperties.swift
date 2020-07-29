@@ -8,7 +8,7 @@ extension City {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var cityId: Int64
+    @NSManaged public var cityId: Int
     @NSManaged public var longtitute: Float
     @NSManaged public var latitude: Float
     @NSManaged public var temperature: Float

@@ -35,12 +35,12 @@ class WeatherTableViewController: UITableViewController {
                 print(error)
             case .success(let weather):
                 self?.listOfWeather = weather
-                print(weather)
+                print("Data from UpdateWeatherRequest \(weather)")
             }
         }
         
         let citiesWeather = [City]()
-        city = citiesWeather[0]
+//        city = citiesWeather[0]
         
         let list = shoto(entity: citiesWeather)
         //print(citiesWeather)
@@ -105,7 +105,7 @@ class WeatherTableViewController: UITableViewController {
             let wind = Wind(speed: newSpeed)
             let coord = Coordinates(lon: newLon, lat: newLat)
             
-            let element = WeatherDetails.init(main: main, wind: wind, id: newId, name: newName, weather: [weather], coord: coord)
+            let element = WeatherDetails.init(main: main, wind: wind, id: Int64(newId), name: newName, weather: [weather], coord: coord)
             list.append(element)
         }
         return list
