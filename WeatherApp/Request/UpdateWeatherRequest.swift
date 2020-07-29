@@ -18,7 +18,6 @@ struct UpdateWeatherRequest {
         
         let arrayIds = CitiesId().cityIdsArray
         let joinedId = CitiesId().getCityId(array: arrayIds)
-        print(joinedId)
         
         let resourceString = "https://api.openweathermap.org/data/2.5/group?id=\(joinedId)&units=metric&APPID=\(API_KEY)"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
