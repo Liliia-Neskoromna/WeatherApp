@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct CitiesId {
     static let requestControll = RequestController.shared
     var cityIdsArray: Array = requestControll.propertiesToFetch()
