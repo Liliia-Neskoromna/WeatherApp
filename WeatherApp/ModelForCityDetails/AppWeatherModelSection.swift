@@ -1,6 +1,3 @@
-AppWeatherModelSection
-
-import Foundation
 import UIKit
 
 struct AppWeatherModelSection: Decodable, Hashable {
