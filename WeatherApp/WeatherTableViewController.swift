@@ -34,36 +34,12 @@ class WeatherTableViewController: UITableViewController {
                 print(error)
             case .success(let weather):
                 self?.listOfWeather = weather
-                print("Data from UpdateWeatherRequest \(weather)")
             }
         }
         
         let citiesWeather = [City]()
-        
         let list = shoto(entity: citiesWeather)
         listOfWeather = list
-        
-        //city.update(with: [WeatherDetails : Any])
-        //        var citiesWeather = [City]()
-        //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
-        //        fetchRequest.returnsObjectsAsFaults = false
-        //        citiesWeather = try! persistence.context.fetch(fetchRequest) as! [City]
-        //        let list = shoto(entity: citiesWeather)
-        //        //print(citiesWeather)
-        //        listOfWeather = list
-        
-//        let request = CityRequest(cityName: searchBar.text!)
-//        request.getWeather{[weak self] result in
-//            switch result {
-//            case .failure(let error):
-//                print(error)
-//            case .success(let weather):
-//                self?.listOfWeather = [weather]
-//            }
-//        }
-//
-    
-        
     }
     
     func reloadCoreData() {
@@ -77,9 +53,7 @@ class WeatherTableViewController: UITableViewController {
         fetchRequest.returnsObjectsAsFaults = false
         citiesWeather = try! context.fetch(fetchRequest) as! [City]
         coreDataCityes = citiesWeather
-        //print(coreDataCityes)
         let list = shoto(entity: citiesWeather)
-        //print(citiesWeather)
         listOfWeather = list
     }
     
@@ -168,7 +142,6 @@ class WeatherTableViewController: UITableViewController {
             }
         }
         
-        //Code to Fetch New Data From The DB and Reload Table.
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:  "City")
         fetchRequest.returnsObjectsAsFaults = false
         let sort = NSSortDescriptor(key: "cityId", ascending: true)
@@ -180,7 +153,6 @@ class WeatherTableViewController: UITableViewController {
             print("Error While Fetching Data From DB: \(error.userInfo)")
         }
         let list = shoto(entity: citiesWeather)
-        //print(citiesWeather)
         listOfWeather = list
     }
     

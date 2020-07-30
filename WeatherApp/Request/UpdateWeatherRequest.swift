@@ -35,7 +35,6 @@ struct UpdateWeatherRequest {
                 let decoder = JSONDecoder()
                 let weatherResponse = try decoder.decode(WeatherResponse.self, from: jsonData)
                 let weatherDetails: Array<WeatherDetails> = weatherResponse.list
-                //print("UpdateWeatherRequest is working \(weatherResponse.list)")
                 completion(.success(weatherDetails))
             } catch {
                 completion(.failure(.canNotProcessData))

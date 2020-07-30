@@ -65,14 +65,6 @@
                                             <color key="textColor" red="0.21516883370000001" green="0.46391183139999997" blue="0.62619274849999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wBn-Qc-8nS">
-                                            <rect key="frame" x="333" y="248" width="69" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.24898261795174248" green="0.28108661912324923" blue="0.42118474175955067" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="Update">
-                                                <color key="titleColor" red="0.92635136839999999" green="0.42969217900000001" blue="0.29619705680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="°C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhO-dN-yBZ">
                                             <rect key="frame" x="159" y="104" width="28" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
