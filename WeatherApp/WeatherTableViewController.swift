@@ -26,8 +26,7 @@ class WeatherTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadCoreData()
-        //requestController.viewDidLoad()
-       
+        
         let request = UpdateWeatherRequest()
         request.getWeather{[weak self] result in
             switch result {
@@ -40,10 +39,8 @@ class WeatherTableViewController: UITableViewController {
         }
         
         let citiesWeather = [City]()
-//        city = citiesWeather[0]
         
         let list = shoto(entity: citiesWeather)
-        //print(citiesWeather)
         listOfWeather = list
         
         //city.update(with: [WeatherDetails : Any])

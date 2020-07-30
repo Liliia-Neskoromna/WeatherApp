@@ -31,7 +31,6 @@ struct UpdateWeatherRequest {
                 completion(.failure(.noDataAvailable))
                 return
             }
-            
             do {
                 let decoder = JSONDecoder()
                 let weatherResponse = try decoder.decode(WeatherResponse.self, from: jsonData)
@@ -43,5 +42,15 @@ struct UpdateWeatherRequest {
             }
         }
         dataTask.resume()
+    }
+}
+
+struct CitiesId {
+    static let requestControll = RequestController.shared
+    var cityIdsArray: Array = requestControll.propertiesToFetch()
+    func getCityId(array: [Int]) -> String {
+        let stringArray = array.map { String($0) }
+        let string = "\(stringArray.joined(separator: ","))"
+        return string
     }
 }

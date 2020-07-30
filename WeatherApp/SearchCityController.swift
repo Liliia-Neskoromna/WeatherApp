@@ -10,7 +10,6 @@ class SearchCityController: UITableViewController {
     let context = PersistanceService.shared.context
     var coreDataCityes : [City] = []
     var city = City()
-    //var dict = NSMutableDictionary()
     
     var listOfWeather = [WeatherDetails]() {
         didSet {

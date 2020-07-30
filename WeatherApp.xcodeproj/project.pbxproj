@@ -24,7 +24,6 @@
 		22949871244DE36F00373CB8 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22949870244DE36F00373CB8 /* PersistenceService.swift */; };
 		22949874244DE92200373CB8 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22949872244DE92200373CB8 /* City+CoreDataClass.swift */; };
 		22949875244DE92200373CB8 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22949873244DE92200373CB8 /* City+CoreDataProperties.swift */; };
-		22A7D95D24D18AE70023E6BA /* CityIdToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7D95C24D18AE70023E6BA /* CityIdToString.swift */; };
 		22A7D95F24D1A62F0023E6BA /* OneCallAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7D95E24D1A62F0023E6BA /* OneCallAPI.swift */; };
 		22A7D96224D1A6710023E6BA /* HourlyWeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7D96124D1A6710023E6BA /* HourlyWeatherAPI.swift */; };
 		22A7D96424D1A6820023E6BA /* DailyWeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7D96324D1A6820023E6BA /* DailyWeatherAPI.swift */; };
@@ -59,7 +58,6 @@
 		22949870244DE36F00373CB8 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		22949872244DE92200373CB8 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
 		22949873244DE92200373CB8 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		22A7D95C24D18AE70023E6BA /* CityIdToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityIdToString.swift; sourceTree = "<group>"; };
 		22A7D95E24D1A62F0023E6BA /* OneCallAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneCallAPI.swift; sourceTree = "<group>"; };
 		22A7D96124D1A6710023E6BA /* HourlyWeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherAPI.swift; sourceTree = "<group>"; };
 		22A7D96324D1A6820023E6BA /* DailyWeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherAPI.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 			children = (
 				2208A03F244EFEF30074B663 /* SearchCityRequest.swift */,
 				2258A3A324CB095600B0394D /* UpdateWeatherRequest.swift */,
-				22A7D95C24D18AE70023E6BA /* CityIdToString.swift */,
 				2258A3A524CB3DDB00B0394D /* RequestController.swift */,
 				22A7D96924D1A74B0023E6BA /* CityWeatherDetailsRequest.swift */,
 			);
@@ -124,8 +121,7 @@
 				22A7D96D24D1A94A0023E6BA /* CollectionView */,
 				223697E42423A01B00DD2209 /* Main.storyboard */,
 				2208A041244EFF8A0074B663 /* Request */,
-				223697FF2423D0B200DD2209 /* ModelForWeather */,
-				22A7D96024D1A63C0023E6BA /* ModelForCityDetails */,
+				22A7D97424D1AE670023E6BA /* Model */,
 				22949877244DE99700373CB8 /* CoreData */,
 				2258A3AE24CED21A00B0394D /* Extensions-Utilities */,
 				2258A3AB24CED1A800B0394D /* Supporting */,
@@ -135,12 +131,12 @@
 			path = WeatherApp;
 			sourceTree = "<group>";
 		};
-		223697FF2423D0B200DD2209 /* ModelForWeather */ = {
+		223697FF2423D0B200DD2209 /* ModelForSavedCity */ = {
 			isa = PBXGroup;
 			children = (
 				2265D9F9242923E700FF1346 /* WeatherModel.swift */,
 			);
-			path = ModelForWeather;
+			path = ModelForSavedCity;
 			sourceTree = "<group>";
 		};
 		2258A3AB24CED1A800B0394D /* Supporting */ = {
@@ -193,6 +189,15 @@
 				22A7D97224D1A9A70023E6BA /* HourlyWeatherCell.swift */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		22A7D97424D1AE670023E6BA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				223697FF2423D0B200DD2209 /* ModelForSavedCity */,
+				22A7D96024D1A63C0023E6BA /* ModelForCityDetails */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,7 +275,6 @@
 				22A7D97324D1A9A70023E6BA /* HourlyWeatherCell.swift in Sources */,
 				22E7E9352427CB950099E627 /* WeatherTableViewCell.swift in Sources */,
 				22A7D96F24D1A96B0023E6BA /* SectionHeader.swift in Sources */,
-				22A7D95D24D18AE70023E6BA /* CityIdToString.swift in Sources */,
 				2258A3AA24CED03400B0394D /* ReusableTableView.swift in Sources */,
 				22A7D95F24D1A62F0023E6BA /* OneCallAPI.swift in Sources */,
 				22949871244DE36F00373CB8 /* PersistenceService.swift in Sources */,

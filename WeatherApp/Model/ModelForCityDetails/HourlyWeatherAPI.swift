@@ -53,15 +53,15 @@ struct HourlyWeatherAPI: Decodable, Hashable {
     //        let humidity = self.humidity
     //        let wind_speed = self.wind_speed
     //
-    ////        var weather: Array<AppWeather> = [AppWeather]()
-    ////
-    ////        for each in self.weather {
-    ////            let main = each.main
-    ////            let icon = each.icon
-    ////
-    ////            let newWeather = AppWeather(main: main, icon: icon)
-    ////            weather.append(newWeather)
-    ////        }
+    //        var weather: Array<AppWeather> = [AppWeather]()
+    //
+    //        for each in self.weather {
+    //            let main = each.main
+    //            let icon = each.icon
+    //
+    //            let newWeather = AppWeather(main: main, icon: icon)
+    //            weather.append(newWeather)
+    //        }
     //        let weather = self.weather
     //
     //        let item: AppHourly = AppHourly(dt: dt,
