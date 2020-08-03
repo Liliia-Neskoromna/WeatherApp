@@ -12,6 +12,7 @@ class WeatherTableViewCell: UITableViewCell {
     
     @IBOutlet weak var bigButton: UIView!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.bigButtonTapped(sender:)))
