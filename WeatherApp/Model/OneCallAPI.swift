@@ -14,8 +14,6 @@ struct CityWeatherResponse: Decodable {
 }
 
 struct OneCallAPI: Decodable, Hashable {
-    var lat: Float
-    var lon: Float
     var hourly: [HourlyWeatherAPI]
     var daily: [DailyWeatherAPI]
 }

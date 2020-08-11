@@ -25,7 +25,6 @@ class DailyWeatherCell: UICollectionViewCell {
         
         self.layer.cornerRadius = 4
         self.clipsToBounds = true
-        
     }
     
     func setupElements() {
@@ -41,8 +40,14 @@ class DailyWeatherCell: UICollectionViewCell {
         dt.text = String(city.dt)
         dt.textColor = .darkGray
         dt.font = UIFont(name: "avenir", size: 23)
+        
+        let icon = city.weather[0].icon
+        let string = "https://openweathermap.org/img/wn/\(icon)@2x.png"
+        cell.imageWeatherIcon.imageFromServerURL(urlString: string)
+        
         for element in city.weather {
-            icon.image = UIImage(named: element.icon)
+            icon.
+                //= UIImage(named: element.icon)
         }
     }
 

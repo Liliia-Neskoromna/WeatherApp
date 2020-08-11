@@ -9,9 +9,8 @@ struct SavedCityRequest {
     let urlresource: URL
     
     init () {
-        let resourceString = "https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=current,minutely&appid=35b80fc7e92ced8b98ba88190b7b274b"
+        let resourceString = "https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=current,minutely&units=metric&appid=35b80fc7e92ced8b98ba88190b7b274b"
         guard let urlresource = URL(string: resourceString) else { fatalError() }
-        
         self.urlresource = urlresource
     }
     

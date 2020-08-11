@@ -26,6 +26,7 @@ class SectionHeader: UICollectionReusableView {
         title.font = UIFont(name: "avenir", size: 25)
         title.translatesAutoresizingMaskIntoConstraints = false
     }
+    
     private func setupConstraints() {
         addSubview(title)
         NSLayoutConstraint.activate([
@@ -40,7 +41,5 @@ class SectionHeader: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-
 }
 

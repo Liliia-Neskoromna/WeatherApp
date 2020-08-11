@@ -11,7 +11,7 @@ import UIKit
 
 struct WeatherSection: Decodable, Hashable {
     
-    let type: String
+    let type: String 
     let title: String
     let items: [WeatherItem]
     

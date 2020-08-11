@@ -10,17 +10,15 @@ import UIKit
 
 class ListViewController: UIViewController {
     
-    //var sections = Bundle.main.decode([AppWeatherModelSection].self, from: "model.json")
-    var list = [OneCallAPI]()
-    var sections = [AppWeatherModelSection]()
-    
-    //    {
-    //        didSet {
-    //            DispatchQueue.main.async {
-    //                self.tableView.reloadData()
-    //            }
-    //        }
-    //    }
+    var sections = [AppWeatherModelSection]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.setupCollectionView()
+                self.createDataSource()
+                self.reloadData()
+            }
+        }
+    }
     
     var collectionView: UICollectionView!
     
@@ -31,15 +29,8 @@ class ListViewController: UIViewController {
         getSavedCityWeather()
         
         view.backgroundColor = .orange
-        setupCollectionView()
-        createDataSource()
-        reloadData()
-        print(sections)
+ 
     }
-    func getWeatherForApp() {
-        //var hourlyWeather = list
-    }
-    
     
     func getSavedCityWeather() {
         
@@ -49,7 +40,25 @@ class ListViewController: UIViewController {
             case .failure(let error):
                 print(error)
             case .success(let weather):
-                self?.list = [weather]
+                var arrayHourly = Array<AppHourlyDailyItem>()
+                for element in weather.hourly {
+                    let newElement = element.mapTo()
+                    arrayHourly.append(newElement)
+                    //print(arrayHourly)
+                }
+                let appHourlyModelSection = AppWeatherModelSection(type: Type.Hourly, modelItems: arrayHourly)
+                
+                var arrayDaily = Array<AppHourlyDailyItem>()
+                for element in weather.daily {
+                    let newElement = element.mapTo()
+                    arrayDaily.append(newElement)
+                    //prinprint(arrayDaily)
+                }
+                let appDailyModelSection = AppWeatherModelSection(type: Type.Daily, modelItems: arrayDaily)
+                
+                let sections = [appHourlyModelSection, appDailyModelSection]
+                
+                self!.sections = sections
             }
         }
     }
@@ -65,23 +74,17 @@ class ListViewController: UIViewController {
         
         collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseId)
     }
-
     
     func createDataSource() {
         dataSourse = UICollectionViewDiffableDataSource<AppWeatherModelSection, AppHourlyDailyItem>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, city) -> UICollectionViewCell? in
-            let newSection = self.sections[indexPath.section]
-            let sec = [newSection.daily, newSection.hourly]
+            let type = self.sections[indexPath.section].type
             
-            switch sec[indexPath.section] {
-            case newSection.daily:
+            switch type {
+            case Type.Daily:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyWeatherCell.reuseId, for: indexPath) as? DailyWeatherCell
                 cell?.configure(with: city)
                 return cell
-            case newSection.hourly:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyWeatherCell.reuseId, for: indexPath) as? HourlyWeatherCell
-                cell?.configure(with: city)
-                return cell
-            default:
+            case Type.Hourly:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyWeatherCell.reuseId, for: indexPath) as? HourlyWeatherCell
                 cell?.configure(with: city)
                 return cell
@@ -108,7 +111,7 @@ class ListViewController: UIViewController {
         snapshot.appendSections(sections)
         
         for section in sections {
-            snapshot.appendItems(section.daily, toSection: section)
+            snapshot.appendItems(section.modelItems, toSection: section)
         }
         
         dataSourse?.apply(snapshot)
